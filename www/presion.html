@@ -7,7 +7,17 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/framework.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-
+<style>
+	#map{
+		width:100%;
+		padding-left:10px;
+		padding-right:10px;
+	}
+	#windy {
+		width: 100%;
+		height: 700px;
+	}
+</style>
 </head>
 <body>
 <!--Header-->
@@ -77,179 +87,15 @@
                 <!--p>
 					<iframe src="https://embed.windy.com/embed2.html?lat=9.933&amp;lon=-84.083&amp;zoom=5&amp;level=surface&amp;overlay=pressure&amp;menu=true&amp;message=&amp;marker=&amp;forecast=12&amp;calendar=now&amp;location=ip&amp;type=map&amp;actualGrid=&amp;metricWind=km%2Fh&amp;metricTemp=%C2%B0C" width="100%" height="400" frameborder="0"></iframe>
 				</p-->
-				<script src="https://unpkg.com/leaflet@0.7.7/dist/leaflet.js"></script>
-				<script src="https://api4.windy.com/assets/libBoot.js"></script>
-				<style>
-					#windy {
-							width: 100%;
-							height: 700px;
-					}
-				</style>
-				<div id="windy"></div>
-				<script>
-					var map = null;
-					const options = {
-
-						key: 'dHrdqZFBUTuWzqzcpOOwen3qHOAd4wyW',
-
-						verbose: true,
-
-						// Optional: Initial state of the map
-						lat: 7.537,
-						lon: -87.583,
-						zoom: 5,
-						overlay: 'pressure',
-						level:'surface',
-						forecast:'24',
-						calendar:'now'
-					}
-
-					windyInit( options, windyAPI => {
-						// windyAPI is ready, and contain 'map', 'store',
-						// 'picker' and other usefull stuff
-
-						const { overlays, broadcast, map } = windyAPI
-
-						//overlays.currents.setMetric('km/h');
-
-					})
-				</script>
+				<div id="map">
+					<div id="windy"></div>
+				</div>
 				<p style="text-align: center;">Datos obtenidos de <a href="https://www.windy.com/">Windy</a></p>
                 </div>
 			</div>
 <!--End Content-->
 <!--Footer-->
-			<!--
-			<div class="content-strip">
-				<div class="container">
-					<h2 class="ultrabold uppercase color-white center-text">Packed with Goodies</h2>
-					<p class="small-text color-gray-light center-text full-bottom">Everything you need to go mobile today!</p>
-				</div>
-				<div class="decoration deco-3 opacity-60 decoration-margins"></div>
-				<div class="double-slider owl-carousel owl-no-dots">
-					<div>
-						<p class="center-text color-white half-bottom"><i class="fa fa-code fa-2x"></i></p>
-						<h5 class="center-text uppercase ultrabold color-white">Flexible Code</h5>
-						<p class="center-text small-text">
-							Code made so you can edit it however you want.
-						</p>
-					</div>		
-					<div>
-						<p class="center-text color-white half-bottom"><i class="fa fa-info fa-2x"></i></p>
-						<h5 class="center-text uppercase ultrabold color-white">Product Guide</h5>
-						<p class="center-text small-text">
-							A detailed documentation that covers all features.
-						</p>
-					</div>					
-					<div>
-						<p class="center-text color-white half-bottom"><i class="fa fa-cog fa-2x"></i></p>
-						<h5 class="center-text uppercase ultrabold color-white">Lifetime Updates</h5>
-						<p class="center-text small-text">
-							After you purchase Appeca, updates are free for life.
-						</p>
-					</div>			
-					<div>
-						<p class="center-text color-white half-bottom"><i class="fa fa-life-ring fa-2x"></i></p>
-						<h5 class="center-text uppercase ultrabold color-white">Support Forum</h5>
-						<p class="center-text small-text">
-							On our forum we'll answer any question you may have.
-						</p>
-					</div>					
-		
-				</div>
-				<div class="decoration deco-3 opacity-60 decoration-margins half-bottom"></div>
-				<p class="center-text small-text color-white container no-bottom opacity-50 italic">Offer applies to all our customers.</p>
-				<div class="overlay overlay-dark"></div>
-				<div class="content-strip-bg preload-image" data-src="img/pictures/1s.jpg"></div>
-			</div>-->
-			<!--<div class="content half-bottom">
-				<h2 class="ultrabold uppercase center-text">Featured Product</h2>
-				<p class="small-text center-text half-bottom">Featured across the Envato Marketplaces</p>
-				<div class="gallery full-bottom">
-					<a href="img/products/4.png" class="show-gallery polaroid-effect polaroid-effect-small half-bottom" title="Galleries have Captions.">
-						<img data-src="img/products/4.png" src="img/empty.png" class="preload-image responsive-image no-bottom"  alt="Image Unavailable">
-					</a>
-					<a href="img/products/1.png" class="show-gallery" title="And they are just a Title Tag.">
-						<img class="polaroid-effect polaroid-effect-small preload-image responsive-image no-bottom one-third" data-src="img/products/1.png" src="img/empty.png" alt="img">
-					</a>
-					<a href="img/products/2.png" class="show-gallery" title="Simple and Easy to Use.">
-						<img class="polaroid-effect polaroid-effect-small preload-image responsive-image no-bottom one-third" data-src="img/products/2.png" src="img/empty.png" alt="img">
-					</a>
-					<a href="img/products/3.png" class="show-gallery" title="Stunning on Your Mobile.">
-						<img class="polaroid-effect polaroid-effect-small preload-image responsive-image no-bottom one-third last-column" data-src="img/products/3.png" src="img/empty.png" alt="img">
-					</a>
-					<div class="clear"></div>
-				</div>
-				<p class="boxed-text-large full-bottom">
-					Numerous products from our portfolio have been featured on the Envato Marketplaces and we're always proud to show them off!
-				</p>
-				<a href="#" class="button button-rounded button-center-large button-s button-blue uppercase ultrabold full-bottom">Purchase Today</a>
-			</div>
-			
-			<div class="decoration decoration-margins"></div>
-			
-			<div class="content-strip">
-				<div class="single-slider owl-carousel owl-auto-height owl-no-dots">
-					<div class="container">
-						<h3 class="ultrathin italic large-line-height color-white opacity-80 center-text">
-							The code is always great with any Enabled template,
-							but its the customer support that wins me over all 
-							the time. So responsive and helpful!
-						</h3>
-						<div class="center-stars half-top">
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-						</div>
-						<a href="#" class="small-text color-blue2-light center-text half-top normal-text">Eminat - ThemeForest Buyer</a>
-					</div>					
-					<div class="container">
-						<h3 class="ultrathin italic large-line-height color-white opacity-80 center-text">
-							Awesome customer service, sent a request and was answered promptly. Great product,
-							well worth purchasing for mobile templates.
-						</h3>
-						<div class="center-stars half-top">
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-						</div>
-						<a href="#" class="small-text color-blue2-light center-text half-top normal-text">Globo Logic - ThemeForest Buyer</a>
-					</div>			
-					<div class="container">
-						<h3 class="ultrathin italic large-line-height color-white opacity-80 center-text">
-							Wonderful support and design! Had some questions and got fast support and answers. 
-							Highly recommend Enabled products.
-						</h3>
-						<div class="center-stars half-top">
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-						</div>
-						<a href="#" class="small-text color-blue2-light center-text half-top normal-text">Bit Mash - ThemeForest Buyer</a>
-					</div>
-				</div>
-				<div class="overlay overlay-dark"></div>
-				<div class="content-strip-bg preload-image" data-src="img/pictures/1s.jpg"></div>
-			</div>
-			<div class="decoration decoration-margins"></div>
-			
-			<div class="content">
-				<h1 class="uppercase ultrabold center-text">Much More to see</h1>
-				<p class="small-text center-text color-blue-dark half-bottom">There are tones of awesome features waiting</p>
-				<p class="boxed-text full-bottom">
-					There are hundreds of features waiting to be discovered, and they are just a tap away!
-				</p>
-				<a href="#" data-deploy-menu="menu-1" class="button button-blue button-rounded button-center-large uppercase ultrabold">Show me More</a>
-			</div>
-			
-			<div class="decoration decoration-margins"></div>
-			-->
+
 			<div class="footer footer-dark">
 				<!--<a href="#" class="footer-logo"></a>-->
 				<img src="img/static/usaid-logo-opt.png" style="margin: auto;">
@@ -355,5 +201,36 @@
 		function navigatepage($pagename){
 	                  window.location.href = $pagename;
 	}
-	</script>
+</script>
+<link rel="stylesheet" type="text/css" href="css/lib.css">
+<script src="https://unpkg.com/leaflet@0.7.7/dist/leaflet.js"></script>
+<script src="https://api4.windy.com/assets/libBoot.js"></script>
+<script>
+	var map = null;
+	const options = {
+
+		key: 'dHrdqZFBUTuWzqzcpOOwen3qHOAd4wyW',
+
+		verbose: true,
+
+		// Optional: Initial state of the map
+		lat: 7.537,
+		lon: -87.583,
+		zoom: 5,
+		overlay: 'pressure',
+		level:'surface',
+		forecast:'24',
+		calendar:'now'
+	}
+
+	windyInit( options, windyAPI => {
+		// windyAPI is ready, and contain 'map', 'store',
+		// 'picker' and other usefull stuff
+
+		const { overlays, broadcast, map } = windyAPI
+
+		//overlays.currents.setMetric('km/h');
+
+	})
+</script>
 </body>

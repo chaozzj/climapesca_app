@@ -7,7 +7,17 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/framework.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-
+<style>
+	#map{
+		width:100%;
+		padding-left:10px;
+		padding-right:10px;
+	}
+	#windy {
+		width: 100%;
+		height: 700px;
+	}
+</style>
 </head>
 <body>
 <!--Header-->
@@ -77,43 +87,10 @@
                 <!--p>
 					<iframe src="https://embed.windy.com/embed2.html?lat=9.967&amp;lon=-84.050&amp;zoom=5&amp;level=surface&amp;overlay=waves&amp;menu=true&amp;message=&amp;marker=&amp;forecast=12&amp;calendar=now&amp;location=ip&amp;type=map&amp;actualGrid=&amp;metricWind=km%2Fh&amp;metricTemp=%C2%B0C" width="100%" height="400" frameborder="0"></iframe>
 				</p-->
-				<script src="https://unpkg.com/leaflet@0.7.7/dist/leaflet.js"></script>
-				<script src="https://api4.windy.com/assets/libBoot.js"></script>
-				<style>
-					#windy {
-							width: 100%;
-							height: 700px;
-					}
-				</style>
-				<div id="windy"></div>
-				<script>
-					var map = null;
-					const options = {
-
-						key: 'dHrdqZFBUTuWzqzcpOOwen3qHOAd4wyW',
-
-						verbose: true,
-
-						// Optional: Initial state of the map
-						lat: 7.537,
-						lon: -87.583,
-						zoom: 5,
-						overlay: 'waves',
-						level:'surface',
-						forecast:'24',
-						calendar:'now'
-					}
-
-					windyInit( options, windyAPI => {
-						// windyAPI is ready, and contain 'map', 'store',
-						// 'picker' and other usefull stuff
-
-						const { overlays, broadcast, map } = windyAPI
-
-						//overlays.currents.setMetric('m/s');
-
-					})
-				</script>
+				<div id="map">
+					<div id="windy"></div>
+				</div>
+				
 				<p style="text-align: center;">Datos obtenidos de <a href="https://www.windy.com/">Windy</a></p>
                 </div>
 			</div>
@@ -355,5 +332,36 @@
 		function navigatepage($pagename){
 	                  window.location.href = $pagename;
 	}
-	</script>
+</script>
+<link rel="stylesheet" type="text/css" href="css/lib.css">
+<script src="https://unpkg.com/leaflet@0.7.7/dist/leaflet.js"></script>
+<script src="https://api4.windy.com/assets/libBoot.js"></script>
+<script>
+	var map = null;
+	const options = {
+
+		key: 'dHrdqZFBUTuWzqzcpOOwen3qHOAd4wyW',
+
+		verbose: true,
+
+		// Optional: Initial state of the map
+		lat: 7.537,
+		lon: -87.583,
+		zoom: 5,
+		overlay: 'waves',
+		level:'surface',
+		forecast:'24',
+		calendar:'now'
+	}
+
+	windyInit( options, windyAPI => {
+		// windyAPI is ready, and contain 'map', 'store',
+		// 'picker' and other usefull stuff
+
+		const { overlays, broadcast, map } = windyAPI
+
+		//overlays.currents.setMetric('m/s');
+
+	})
+</script>
 </body>
