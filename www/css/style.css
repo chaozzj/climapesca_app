@@ -51,7 +51,7 @@
 }
 #opesca_logo
 {
-	margin:auto;
+	margin:auto; max-width: 400px;
 }
 #preloader h1{
 	width:100%;
