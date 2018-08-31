@@ -358,9 +358,17 @@
 		// windyAPI is ready, and contain 'map', 'store',
 		// 'picker' and other usefull stuff
 
-		const { overlays, broadcast, map } = windyAPI
+		const { picker, overlays, broadcast, map } = windyAPI
 
-		//overlays.currents.setMetric('m/s');
+		picker.on('pickerOpened', latLon => {
+
+			W.rootScope.isMobile=false;
+
+		});
+
+		broadcast.on("rqstOpen", params => {
+			W.rootScope.isMobile=false;
+		});
 
 	})
 </script>
