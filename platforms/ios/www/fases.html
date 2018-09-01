@@ -7,9 +7,83 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/framework.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+<style>
+	#calendar {
+		padding:10px;
+	}
+	td { 
+		background-color:#CCCC99; 
+		width:80px; 
+		height:40px; 
+		text-align:right; 
+		vertical-align:top;
+		padding:3px; 
+	}
+	.void{ background-color:#FFFFFF; } 
+	.sunday{ background-color:#880000; color:#FFFFFF; }
+</style>
+<script type="text/javascript">
+	function load_moon_phases(obj){
+		var gets=[];
+		for (var i in obj){
+			gets.push(i+"="+encodeURIComponent(obj[i]));
+		}	
+		var xmlhttp = new XMLHttpRequest()
+		var url = "http://www.icalendar37.net/lunar/api/?"+gets.join("&");
+		xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				var moon  = JSON.parse(xmlhttp.responseText);
+				moon_calendar(moon);
+			}
+		}
+		xmlhttp.open("GET", url, true);
+		xmlhttp.send();
+	}
+	
+	function init() { 
+		var configMoon = {
+			lang  		:'es', // 'ca' 'de' 'en' 'es' 'fr' 'it' 'pl' 'pt' 'ru' 'zh' (*)
+			month 		:new Date().getMonth() + 1, // 1  - 12
+			year  		:new Date().getFullYear(),
+			size		:24, //pixels
+			lightColor	:"#FFFF88", //CSS color
+			shadeColor	:"#111111", //CSS color
+			sizeQuarter	:20, //pixels
+			texturize	:false //true - false
+		}
+		configMoon.LDZ=new Date(configMoon.year,configMoon.month-1,1)/1000;
+		load_moon_phases(configMoon);
+	}
 
+	function moon_calendar(moon){
+		var sunday
+		var day
+		var firstDayMonth = parseInt(moon.firstDayMonth)
+		var lastDayMonth = parseInt(moon.phase[moon.daysMonth].dayWeek)
+		var html="<table cellspacing=5 cellpadding=0 border=0> " 
+		html+="<tr><th colspan=7>"+moon.nameMonth[moon.month-1]+" "+ moon.year+"</th><tr>"
+		html+="<tr>"
+		for (var  i=0;i<7;i++){	html+="<th>"+moon.nameDay[i].substring(0,2)+"</th>" }	
+		html+="</tr><tr>"
+		html+=  new Array(firstDayMonth).join( "<td class='void'></td>" );
+		for (  i=0;i < moon.daysMonth;i++){
+			day=i+1
+			sunday=(moon.phase[day].dayWeek==6)?"class='sunday'":""		
+			html+="<td "+sunday+">"
+			indexFaseLimit = moon.phase[day].isPhaseLimit
+			html+="<div style=\"text-align:left;\"><strong>" + day + "</strong></div>";
+			//html+= "<div>"+moon.phase[day].phaseName+"</div>";
+			html+= "<div>" + moon.phase[day].svg.replace("<a xlink:href=\"http:\/\/www.icalendar37.net\/lunar\/app\/\" target=\"_blank\"><circle cx=\"50\" cy=\"50\" r=\"49\" style=\"pointer-events:all;cursor:pointer\" stroke-width=\"0\"   fill=\"transparent\" \/><\/a>","") + "</div>"
+			html+="</td>"
+			if ((i+firstDayMonth)%7==0) html+="</tr><tr>"
+		}
+		html+=  new Array(7 - lastDayMonth).join( "<td class='void'></td>" );	
+		html+="</tr></table>"
+		document.getElementById("calendar").innerHTML=html
+	}
+</script>
 </head>
-<body>
+<body onload=init();>
 <!--Header-->
 
 	
@@ -74,142 +148,14 @@
 			<div class="homepage-cta no-top">
 				<h1 class="half-top center-text no-bottom font-21">Fases de la luna</h1>
                 <br>
-                <p><iframe style="border: none; overflow: hidden; width: 100%;" src="https://www.tutiempo.net/s-widget/moon/000000l1n/" width="300" height="400" frameborder="0" scrolling="yes"></iframe>	
+				<!--p><iframe style="border: none; overflow: hidden; width: 100%;" src="https://www.tutiempo.net/s-widget/moon/000000l1n/" width="300" height="400" frameborder="0" scrolling="yes"></iframe-->
+					<div id="calendar"></div>
+					<p style="text-align: center;">Datos obtenidos de: <a href="http://www.icalendar37.net/t">iCalendar</a></p>
                 </div>
 			</div>
 <!--End Content-->
 <!--Footer-->
-			<!--
-			<div class="content-strip">
-				<div class="container">
-					<h2 class="ultrabold uppercase color-white center-text">Packed with Goodies</h2>
-					<p class="small-text color-gray-light center-text full-bottom">Everything you need to go mobile today!</p>
-				</div>
-				<div class="decoration deco-3 opacity-60 decoration-margins"></div>
-				<div class="double-slider owl-carousel owl-no-dots">
-					<div>
-						<p class="center-text color-white half-bottom"><i class="fa fa-code fa-2x"></i></p>
-						<h5 class="center-text uppercase ultrabold color-white">Flexible Code</h5>
-						<p class="center-text small-text">
-							Code made so you can edit it however you want.
-						</p>
-					</div>		
-					<div>
-						<p class="center-text color-white half-bottom"><i class="fa fa-info fa-2x"></i></p>
-						<h5 class="center-text uppercase ultrabold color-white">Product Guide</h5>
-						<p class="center-text small-text">
-							A detailed documentation that covers all features.
-						</p>
-					</div>					
-					<div>
-						<p class="center-text color-white half-bottom"><i class="fa fa-cog fa-2x"></i></p>
-						<h5 class="center-text uppercase ultrabold color-white">Lifetime Updates</h5>
-						<p class="center-text small-text">
-							After you purchase Appeca, updates are free for life.
-						</p>
-					</div>			
-					<div>
-						<p class="center-text color-white half-bottom"><i class="fa fa-life-ring fa-2x"></i></p>
-						<h5 class="center-text uppercase ultrabold color-white">Support Forum</h5>
-						<p class="center-text small-text">
-							On our forum we'll answer any question you may have.
-						</p>
-					</div>					
-		
-				</div>
-				<div class="decoration deco-3 opacity-60 decoration-margins half-bottom"></div>
-				<p class="center-text small-text color-white container no-bottom opacity-50 italic">Offer applies to all our customers.</p>
-				<div class="overlay overlay-dark"></div>
-				<div class="content-strip-bg preload-image" data-src="img/pictures/1s.jpg"></div>
-			</div>-->
-			<!--<div class="content half-bottom">
-				<h2 class="ultrabold uppercase center-text">Featured Product</h2>
-				<p class="small-text center-text half-bottom">Featured across the Envato Marketplaces</p>
-				<div class="gallery full-bottom">
-					<a href="img/products/4.png" class="show-gallery polaroid-effect polaroid-effect-small half-bottom" title="Galleries have Captions.">
-						<img data-src="img/products/4.png" src="img/empty.png" class="preload-image responsive-image no-bottom"  alt="Image Unavailable">
-					</a>
-					<a href="img/products/1.png" class="show-gallery" title="And they are just a Title Tag.">
-						<img class="polaroid-effect polaroid-effect-small preload-image responsive-image no-bottom one-third" data-src="img/products/1.png" src="img/empty.png" alt="img">
-					</a>
-					<a href="img/products/2.png" class="show-gallery" title="Simple and Easy to Use.">
-						<img class="polaroid-effect polaroid-effect-small preload-image responsive-image no-bottom one-third" data-src="img/products/2.png" src="img/empty.png" alt="img">
-					</a>
-					<a href="img/products/3.png" class="show-gallery" title="Stunning on Your Mobile.">
-						<img class="polaroid-effect polaroid-effect-small preload-image responsive-image no-bottom one-third last-column" data-src="img/products/3.png" src="img/empty.png" alt="img">
-					</a>
-					<div class="clear"></div>
-				</div>
-				<p class="boxed-text-large full-bottom">
-					Numerous products from our portfolio have been featured on the Envato Marketplaces and we're always proud to show them off!
-				</p>
-				<a href="#" class="button button-rounded button-center-large button-s button-blue uppercase ultrabold full-bottom">Purchase Today</a>
-			</div>
 			
-			<div class="decoration decoration-margins"></div>
-			
-			<div class="content-strip">
-				<div class="single-slider owl-carousel owl-auto-height owl-no-dots">
-					<div class="container">
-						<h3 class="ultrathin italic large-line-height color-white opacity-80 center-text">
-							The code is always great with any Enabled template,
-							but its the customer support that wins me over all 
-							the time. So responsive and helpful!
-						</h3>
-						<div class="center-stars half-top">
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-						</div>
-						<a href="#" class="small-text color-blue2-light center-text half-top normal-text">Eminat - ThemeForest Buyer</a>
-					</div>					
-					<div class="container">
-						<h3 class="ultrathin italic large-line-height color-white opacity-80 center-text">
-							Awesome customer service, sent a request and was answered promptly. Great product,
-							well worth purchasing for mobile templates.
-						</h3>
-						<div class="center-stars half-top">
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-						</div>
-						<a href="#" class="small-text color-blue2-light center-text half-top normal-text">Globo Logic - ThemeForest Buyer</a>
-					</div>			
-					<div class="container">
-						<h3 class="ultrathin italic large-line-height color-white opacity-80 center-text">
-							Wonderful support and design! Had some questions and got fast support and answers. 
-							Highly recommend Enabled products.
-						</h3>
-						<div class="center-stars half-top">
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-							<i class="fa fa-star color-yellow-dark"></i>
-						</div>
-						<a href="#" class="small-text color-blue2-light center-text half-top normal-text">Bit Mash - ThemeForest Buyer</a>
-					</div>
-				</div>
-				<div class="overlay overlay-dark"></div>
-				<div class="content-strip-bg preload-image" data-src="img/pictures/1s.jpg"></div>
-			</div>
-			<div class="decoration decoration-margins"></div>
-			
-			<div class="content">
-				<h1 class="uppercase ultrabold center-text">Much More to see</h1>
-				<p class="small-text center-text color-blue-dark half-bottom">There are tones of awesome features waiting</p>
-				<p class="boxed-text full-bottom">
-					There are hundreds of features waiting to be discovered, and they are just a tap away!
-				</p>
-				<a href="#" data-deploy-menu="menu-1" class="button button-blue button-rounded button-center-large uppercase ultrabold">Show me More</a>
-			</div>
-			
-			<div class="decoration decoration-margins"></div>
-			-->
 			<div class="footer footer-dark">
 				<!--<a href="#" class="footer-logo"></a>-->
 				<img src="img/static/usaid-logo-opt.png" style="margin: auto;">

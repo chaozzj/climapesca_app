@@ -11,37 +11,91 @@
 <link rel="stylesheet" href="css/leaflet.css" />
 <script src="js/leaflet.js"></script>>
 <script src="js/proj4leaflet.js"></script>
+<style>
+#map {
+  background-color: #000;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 550px;
+}
+
+/*.leaflet-container .leaflet-control-attribution {
+  padding: 1em;
+  bottom: 1em;
+  right: 1em;
+  background: rgba(40, 40, 40, 0.8);
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.leaflet-container .leaflet-control-attribution a {
+  color: rgb(200, 200, 200);
+  text-decoration: underline;
+}
+
+.leaflet-container .leaflet-control-attribution a:hover {
+  color: rgb(255, 255, 255);
+  text-decoration: underline;
+}*/
+
+.leaflet-bar a {
+  background: rgba(40, 40, 40, 0.8);
+  color: rgb(200, 200, 200);
+}
+
+.leaflet-bar a.leaflet-disabled {
+  background: rgba(40, 40, 40, 0.4);
+}
+
+.leaflet-bar a:hover {
+  background: rgb(255, 255, 255);
+  color: rgb(40, 40, 40);
+}
+
+	#day-label {
+		font: 400 16px "helvetica", sans-serif;
+		/*left: 1em;
+		bottom: 1em;*/
+		color: rgb(200, 200, 200);
+		width: 100%;
+		
+		padding-bottom: 0.5em;
+	}
+
+	#day-panel {
+		position: relative;
+		/*left: 1em;
+		bottom: 1em;*/
+		padding: 3px;
+		background-color: rgba(40, 40, 40, 0.8);
+		border-radius: 5px;
+		border: 1px solid rgb(200, 200, 200);
+		z-index: 1000;
+		text-align: center;
+	}
+
+	#day-panel div {
+		/*width: 10em;*/
+	}
+</style>
 <script>
 		var mymap = null;
+		var map = null;
 		var layer = null;
-		var current = 1;
-		var timeoutid = null;
-		var zoom = 9;
 		var layer = null;
 		var layer2 = null;
 		var layer3 = null;
-		var today = new Date();
-		var dd = today.getDate();
-		var mm = today.getMonth()+1; //January is 0!
-		var yyyy = today.getFullYear();
-		
-		function onLoad() {
-			document.addEventListener("deviceready", init, false);
-		}
 
+		var template =
+			"https://map1{s}.vis.earthdata.nasa.gov/wmts-geo/" +
+			"{layer}/default/{time}/{tileMatrixSet}/{z}/{y}/{x}.jpg";
+		var template2 =
+			"https://map1{s}.vis.earthdata.nasa.gov/wmts-geo/" +
+			"{layer}/default/{time}/{tileMatrixSet}/{z}/{y}/{x}.png";
 
-
-function init(){
-		if(dd<10) {
-			dd = '0'+dd
-		} 
-
-		if(mm<10) {
-			mm = '0'+mm
-		}
-		
-		day = yyyy + "-" + mm + "-" + dd;
-		
 		var EPSG4326 = new L.Proj.CRS(
 			"EPSG:4326",
 			"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs", {
@@ -65,82 +119,126 @@ function init(){
 			}
 		);
 		
-		var template =
-			"https://map1{s}.vis.earthdata.nasa.gov/wmts-geo/" +
-			"{layer}/default/{time}/{tileMatrixSet}/{z}/{y}/{x}.jpg";
-		var template2 =
-			"https://map1{s}.vis.earthdata.nasa.gov/wmts-geo/" +
-			"{layer}/default/{time}/{tileMatrixSet}/{z}/{y}/{x}.png";
+		var today = new Date();
+		var day = new Date(today.getTime());
 		
-		  /*if($("#mymap").width()<=900) { zoom = 8; $("#mymap").height(440); }
-		  if($("#mymap").width()<=340) { zoom = 7; $("#mymap").height(340); }*/
-		  
-		  mymap = L.map("mymap", {
+		function onLoad() {
+			document.addEventListener("deviceready", init, false);
+		}
+
+		function dayParameter() {
+			return day.toISOString().split('T')[0];
+		};
+
+		var update = function () {
+			// There is only one layer in this example, but remove them all
+			// anyway
+			clearLayers();
+
+			// Add the new layer for the selected time
+			map.addLayer(createLayerBackground());
+			map.addLayer(createLayerTerraCh());	
+			map.addLayer(createLayerAquaCh());
+
+			// Update the day label
+			document.querySelector('#day-label').textContent = "Fecha: " + dayParameter();
+		};
+
+		function clearLayers() {
+			map.eachLayer(function (layer) {
+			map.removeLayer(layer);
+			});
+		};
+
+function init(){
+
+	map = L.map("map", {
 			center: [7.537, -87.583],
-			zoom: 5,
+			zoom: 3,
 			maxZoom: 10,
 			crs: EPSG4326,
 			maxBounds: [
 				[-120, -220],
 				[120, 220]
 			]
-		   });
+	});
 
-		    var Esri_OceanBasemap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
-				attribution: 'Tiles &copy; Esri &mdash; Sources: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ, and Esri',
-				maxZoom: 13
-			});
-			
-			Esri_OceanBasemap.addTo(mymap);
-			console.log(day);
+	map.addLayer(createLayerBackground());
+	map.addLayer(createLayerTerraCh());	
+	map.addLayer(createLayerAquaCh());	
+
+	document.querySelector('#day-slider')
+    .addEventListener('change', function (event) {
+      // Add the slider value (effectively subracting) to today's
+      // date.
+      var newDay = new Date(today.getTime());
+      newDay.setUTCDate(today.getUTCDate() +
+        Number.parseInt(event.target.value));
+      day = newDay;
+      update();
+    });
+
+	document.querySelector('#day-label').textContent = "Fecha: " + dayParameter();
+}		  
+
+	function createLayerBackground(){		  
+
 			layer = L.tileLayer(template, {
-			layer: "MODIS_Terra_CorrectedReflectance_TrueColor",
-			tileMatrixSet: "EPSG4326_250m",
-			time: day,
-			tileSize: 512,
-			subdomains: "abc",
-			noWrap: true,
-			continuousWorld: true,
-			// Prevent Leaflet from retrieving non-existent tiles on the
-			// borders.
-			bounds: [
-				[-89.9999, -179.9999],
-				[89.9999, 179.9999]
-			],
-			attribution:
-				"<a href='https://wiki.earthdata.nasa.gov/display/GIBS'>" +
-				"NASA EOSDIS GIBS</a>&nbsp;&nbsp;&nbsp;" +
-				"<a href='https://github.com/nasa-gibs/web-examples/blob/release/examples/leaflet/geographic-epsg4326.js'>" +
-				"View Source" +
-				"</a>"
+				layer: "MODIS_Terra_CorrectedReflectance_TrueColor",
+				tileMatrixSet: "EPSG4326_250m",
+				time: dayParameter(),
+				tileSize: 512,
+				subdomains: "abc",
+				noWrap: true,
+				continuousWorld: true,
+				// Prevent Leaflet from retrieving non-existent tiles on the
+				// borders.
+				bounds: [
+					[-89.9999, -179.9999],
+					[89.9999, 179.9999]
+				],
+				attribution:
+					"<a href='https://wiki.earthdata.nasa.gov/display/GIBS'>" +
+					"NASA EOSDIS GIBS</a>&nbsp;&nbsp;&nbsp;" +
+					"<a href='https://github.com/nasa-gibs/web-examples/blob/release/examples/leaflet/geographic-epsg4326.js'>" +
+					"View Source" +
+					"</a>"
 			});
+			return layer;
+	}			
+	
+	function createLayerTerraCh(){
 			
 			layer2 = L.tileLayer(template2, {
-			layer: "MODIS_Terra_Chlorophyll_A",
-			tileMatrixSet: "EPSG4326_1km",
-			time: day,
-			tileSize: 512,
-			subdomains: "abc",
-			noWrap: true,
-			continuousWorld: true,
-			// Prevent Leaflet from retrieving non-existent tiles on the
-			// borders.
-			bounds: [
-				[-89.9999, -179.9999],
-				[89.9999, 179.9999]
-			],
-			attribution:
-				"<a href='https://wiki.earthdata.nasa.gov/display/GIBS'>" +
-				"NASA EOSDIS GIBS</a>&nbsp;&nbsp;&nbsp;" +
-				"<a href='https://github.com/nasa-gibs/web-examples/blob/release/examples/leaflet/geographic-epsg4326.js'>" +
-				"View Source" +
-				"</a>"
+				layer: "MODIS_Terra_Chlorophyll_A",
+				tileMatrixSet: "EPSG4326_1km",
+				time: dayParameter(),
+				tileSize: 512,
+				subdomains: "abc",
+				noWrap: true,
+				continuousWorld: true,
+				// Prevent Leaflet from retrieving non-existent tiles on the
+				// borders.
+				bounds: [
+					[-89.9999, -179.9999],
+					[89.9999, 179.9999]
+				],
+				attribution:
+					"<a href='https://wiki.earthdata.nasa.gov/display/GIBS'>" +
+					"NASA EOSDIS GIBS</a>&nbsp;&nbsp;&nbsp;" +
+					"<a href='https://github.com/nasa-gibs/web-examples/blob/release/examples/leaflet/geographic-epsg4326.js'>" +
+					"View Source" +
+					"</a>"
 			});
-			
+			return layer2;
+	}
+
+	function createLayerAquaCh() {
+	
 			layer3 = L.tileLayer(template2, {
 			layer: "MODIS_Aqua_Chlorophyll_A",
 			tileMatrixSet: "EPSG4326_1km",
-			time: day,
+			time: dayParameter(),
 			tileSize: 512,
 			subdomains: "abc",
 			noWrap: true,
@@ -159,11 +257,13 @@ function init(){
 				"</a>"
 			});
 			
-			mymap.addLayer(layer);
-			mymap.addLayer(layer2);
-			mymap.addLayer(layer3);
-		}		  
-	  </script>
+			return layer3;
+	}
+
+	// Slider values are in 'days from present'.
+  
+
+</script>
 </head>
 <body onload="init();">
 <!--Header-->
@@ -229,12 +329,13 @@ function init(){
 			<div class="homepage-cta no-top">
 				<h1 class="half-top center-text no-bottom font-21">Clorofila</h1>
                 <br>
-				<style>
-						#mymap { width:100%; height: 500px; }
-						#map { width:100%;  padding-left:10px; padding-right:10px; }
-				</style>
-				<div id="map">	  
-					  <div id="mymap"></div>
+
+				<div id="day-panel">
+						<div id="day-label"></div>
+						<input id="day-slider" type="range" min="-6" max="0" value="0">
+				</div>
+				<div id="mymap" style="width:100%;padding:10px;">	  
+					  <div id="map"></div>				  
 				</div>
 				<p style="text-align: center;">Herramienta obtenida de NASA <a href="https://earthdata.nasa.gov/about">EODIS</a></p>
                 </div>
