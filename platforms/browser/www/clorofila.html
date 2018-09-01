@@ -1,15 +1,15 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
+<head>		
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 <title>Clima Pesca Digital</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/framework.css">
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-<link rel="stylesheet" type="text/css"  href="css/leaflet.css">
 <script src="js/proj4.js"></script>
-<script src="js/leaflet.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+<link rel="stylesheet" href="css/leaflet.css" />
+<script src="js/leaflet.js"></script>>
 <script src="js/proj4leaflet.js"></script>
 <script>
 		var mymap = null;
@@ -24,6 +24,12 @@
 		var dd = today.getDate();
 		var mm = today.getMonth()+1; //January is 0!
 		var yyyy = today.getFullYear();
+		
+		function onLoad() {
+			document.addEventListener("deviceready", init, false);
+		}
+
+
 
 function init(){
 		if(dd<10) {
@@ -35,7 +41,7 @@ function init(){
 		}
 		
 		day = yyyy + "-" + mm + "-" + dd;
-		console.log(day);
+		
 		var EPSG4326 = new L.Proj.CRS(
 			"EPSG:4326",
 			"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs", {
@@ -60,17 +66,17 @@ function init(){
 		);
 		
 		var template =
-			"//map1{s}.vis.earthdata.nasa.gov/wmts-geo/" +
+			"https://map1{s}.vis.earthdata.nasa.gov/wmts-geo/" +
 			"{layer}/default/{time}/{tileMatrixSet}/{z}/{y}/{x}.jpg";
 		var template2 =
-			"//map1{s}.vis.earthdata.nasa.gov/wmts-geo/" +
+			"https://map1{s}.vis.earthdata.nasa.gov/wmts-geo/" +
 			"{layer}/default/{time}/{tileMatrixSet}/{z}/{y}/{x}.png";
 		
 		  /*if($("#mymap").width()<=900) { zoom = 8; $("#mymap").height(440); }
 		  if($("#mymap").width()<=340) { zoom = 7; $("#mymap").height(340); }*/
 		  
 		  mymap = L.map("mymap", {
-			center: [13.0, -89.0],
+			center: [7.537, -87.583],
 			zoom: 5,
 			maxZoom: 10,
 			crs: EPSG4326,
@@ -79,17 +85,18 @@ function init(){
 				[120, 220]
 			]
 		   });
+
 		    var Esri_OceanBasemap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
 				attribution: 'Tiles &copy; Esri &mdash; Sources: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ, and Esri',
 				maxZoom: 13
 			});
 			
 			Esri_OceanBasemap.addTo(mymap);
-
+			console.log(day);
 			layer = L.tileLayer(template, {
 			layer: "MODIS_Terra_CorrectedReflectance_TrueColor",
 			tileMatrixSet: "EPSG4326_250m",
-			time: '2018-08-28',
+			time: day,
 			tileSize: 512,
 			subdomains: "abc",
 			noWrap: true,
@@ -223,7 +230,7 @@ function init(){
 				<h1 class="half-top center-text no-bottom font-21">Clorofila</h1>
                 <br>
 				<style>
-						#mymap { width:100%; height: 700px; }
+						#mymap { width:100%; height: 500px; }
 						#map { width:100%;  padding-left:10px; padding-right:10px; }
 				</style>
 				<div id="map">	  
@@ -328,7 +335,7 @@ function init(){
 	
 	<a href="#" class="back-to-top-badge back-to-top-small"><i class="fa fa-angle-up"></i>Back to Top</a>
 </div>
-<!--script type="text/javascript" src="cordova.js"></script-->
+<script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript" src="js/plugins.js"></script>
