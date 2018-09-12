@@ -217,6 +217,7 @@ wms.Source = L.Layer.extend({
         if (!this._map) {
             return;
         }
+        info = "Latitud: " + latlng.lat.toFixed(6) + ", Longitud: " + latlng.lng.toFixed(6) + "<br>" + info;
         this._map.openPopup(info, latlng);
     },
 

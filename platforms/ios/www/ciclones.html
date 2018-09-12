@@ -1,272 +1,18 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>		
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 <title>Clima Pesca Digital</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/framework.css">
-<script src="js/proj4.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-<link rel="stylesheet" href="css/leaflet.css" />
-<script src="js/leaflet.js"></script>>
-<script src="js/proj4leaflet.js"></script>
-<style>
-#map {
-  background-color: #000;
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 550px;
-}
 
-/*.leaflet-container .leaflet-control-attribution {
-  padding: 1em;
-  bottom: 1em;
-  right: 1em;
-  background: rgba(40, 40, 40, 0.8);
-  border: 1px solid rgb(200, 200, 200);
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-.leaflet-container .leaflet-control-attribution a {
-  color: rgb(200, 200, 200);
-  text-decoration: underline;
-}
-
-.leaflet-container .leaflet-control-attribution a:hover {
-  color: rgb(255, 255, 255);
-  text-decoration: underline;
-}*/
-
-.leaflet-bar a {
-  background: rgba(40, 40, 40, 0.8);
-  color: rgb(200, 200, 200);
-}
-
-.leaflet-bar a.leaflet-disabled {
-  background: rgba(40, 40, 40, 0.4);
-}
-
-.leaflet-bar a:hover {
-  background: rgb(255, 255, 255);
-  color: rgb(40, 40, 40);
-}
-
-	#day-label {
-		font: 400 16px "helvetica", sans-serif;
-		/*left: 1em;
-		bottom: 1em;*/
-		color: rgb(200, 200, 200);
-		width: 100%;
-		
-		padding-bottom: 0.5em;
-	}
-
-	#day-panel {
-		position: relative;
-		/*left: 1em;
-		bottom: 1em;*/
-		padding: 3px;
-		background-color: rgba(40, 40, 40, 0.8);
-		border-radius: 5px;
-		border: 1px solid rgb(200, 200, 200);
-		z-index: 1000;
-		text-align: center;
-	}
-
-	#day-panel div {
-		/*width: 10em;*/
-	}
-</style>
-<script>
-		var mymap = null;
-		var map = null;
-		var layer = null;
-		var layer = null;
-		var layer2 = null;
-		var layer3 = null;
-
-		var template =
-			"https://map1{s}.vis.earthdata.nasa.gov/wmts-geo/" +
-			"{layer}/default/{time}/{tileMatrixSet}/{z}/{y}/{x}.jpg";
-		var template2 =
-			"https://map1{s}.vis.earthdata.nasa.gov/wmts-geo/" +
-			"{layer}/default/{time}/{tileMatrixSet}/{z}/{y}/{x}.png";
-
-		var EPSG4326 = new L.Proj.CRS(
-			"EPSG:4326",
-			"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs", {
-				origin: [-180, 90],
-				resolutions: [
-					0.5625,
-					0.28125,
-					0.140625,
-					0.0703125,
-					0.03515625,
-					0.017578125,
-					0.0087890625,
-					0.00439453125,
-					0.002197265625
-				],
-				// Values are x and y here instead of lat and long elsewhere.
-				bounds: [
-				   [-180, -90],
-				   [180, 90]
-				]
-			}
-		);
-		
-		var today = new Date();
-		var day = new Date(today.getTime());
-		
-		function onLoad() {
-			document.addEventListener("deviceready", init, false);
-		}
-
-		function dayParameter() {
-			return day.toISOString().split('T')[0];
-		};
-
-		var update = function () {
-			// There is only one layer in this example, but remove them all
-			// anyway
-			clearLayers();
-
-			// Add the new layer for the selected time
-			map.addLayer(createLayerBackground());
-			map.addLayer(createLayerTerraCh());	
-			map.addLayer(createLayerAquaCh());
-
-			// Update the day label
-			document.querySelector('#day-label').textContent = "Fecha: " + dayParameter();
-		};
-
-		function clearLayers() {
-			map.eachLayer(function (layer) {
-			map.removeLayer(layer);
-			});
-		};
-
-function init(){
-
-	map = L.map("map", {
-			center: [7.537, -87.583],
-			zoom: 3,
-			maxZoom: 10,
-			crs: EPSG4326,
-			maxBounds: [
-				[-120, -220],
-				[120, 220]
-			]
-	});
-
-	map.addLayer(createLayerBackground());
-	map.addLayer(createLayerTerraCh());	
-	map.addLayer(createLayerAquaCh());	
-
-	document.querySelector('#day-slider')
-    .addEventListener('change', function (event) {
-      // Add the slider value (effectively subracting) to today's
-      // date.
-      var newDay = new Date(today.getTime());
-      newDay.setUTCDate(today.getUTCDate() +
-        Number.parseInt(event.target.value));
-      day = newDay;
-      update();
-    });
-
-	document.querySelector('#day-label').textContent = "Fecha: " + dayParameter();
-}		  
-
-	function createLayerBackground(){		  
-
-			layer = L.tileLayer(template, {
-				layer: "MODIS_Terra_CorrectedReflectance_TrueColor",
-				tileMatrixSet: "EPSG4326_250m",
-				time: dayParameter(),
-				tileSize: 512,
-				subdomains: "abc",
-				noWrap: true,
-				continuousWorld: true,
-				// Prevent Leaflet from retrieving non-existent tiles on the
-				// borders.
-				bounds: [
-					[-89.9999, -179.9999],
-					[89.9999, 179.9999]
-				],
-				attribution:
-					"<a href='https://wiki.earthdata.nasa.gov/display/GIBS'>" +
-					"NASA EOSDIS GIBS</a>&nbsp;&nbsp;&nbsp;" +
-					"<a href='https://github.com/nasa-gibs/web-examples/blob/release/examples/leaflet/geographic-epsg4326.js'>" +
-					"View Source" +
-					"</a>"
-			});
-			return layer;
-	}			
-	
-	function createLayerTerraCh(){
-			
-			layer2 = L.tileLayer(template2, {
-				layer: "MODIS_Terra_Chlorophyll_A",
-				tileMatrixSet: "EPSG4326_1km",
-				time: dayParameter(),
-				tileSize: 512,
-				subdomains: "abc",
-				noWrap: true,
-				continuousWorld: true,
-				// Prevent Leaflet from retrieving non-existent tiles on the
-				// borders.
-				bounds: [
-					[-89.9999, -179.9999],
-					[89.9999, 179.9999]
-				],
-				attribution:
-					"<a href='https://wiki.earthdata.nasa.gov/display/GIBS'>" +
-					"NASA EOSDIS GIBS</a>&nbsp;&nbsp;&nbsp;" +
-					"<a href='https://github.com/nasa-gibs/web-examples/blob/release/examples/leaflet/geographic-epsg4326.js'>" +
-					"View Source" +
-					"</a>"
-			});
-			return layer2;
-	}
-
-	function createLayerAquaCh() {
-	
-			layer3 = L.tileLayer(template2, {
-			layer: "MODIS_Aqua_Chlorophyll_A",
-			tileMatrixSet: "EPSG4326_1km",
-			time: dayParameter(),
-			tileSize: 512,
-			subdomains: "abc",
-			noWrap: true,
-			continuousWorld: true,
-			// Prevent Leaflet from retrieving non-existent tiles on the
-			// borders.
-			bounds: [
-				[-89.9999, -179.9999],
-				[89.9999, 179.9999]
-			],
-			attribution:
-				"<a href='https://wiki.earthdata.nasa.gov/display/GIBS'>" +
-				"NASA EOSDIS GIBS</a>&nbsp;&nbsp;&nbsp;" +
-				"<a href='https://github.com/nasa-gibs/web-examples/blob/release/examples/leaflet/geographic-epsg4326.js'>" +
-				"View Source" +
-				"</a>"
-			});
-			
-			return layer3;
-	}
-
-	// Slider values are in 'days from present'.
-  
-
-</script>
 </head>
-<body onload="init();">
+<body>
 <!--Header-->
+
+	
 <div id="preloader" class="preloader-light">
 	<h1></h1>
 	<div id="preload-spinner"></div>
@@ -322,32 +68,190 @@ function init(){
 	</div>
 <!--End Header-->
 
-
 <!--Content-->
 	<div id="page-content" class="page-content">	
 		<div id="page-content-scroll"><!--Enables this element to be scrolled --> 			
 			<div class="homepage-cta no-top">
-				<h1 class="half-top center-text no-bottom font-21">Clorofila</h1>
+					<div class="content">
+				<h1 class="half-top center-text no-bottom font-21">Vigilancia de Ciclones Tropicales</h1>
                 <br>
-				<div class="content">
-					<p>La clorofila nos indica la presencia de algas en el mar. Cuando vemos niveles altos de clorofila es probable que haya varios peces “pastando” sobre esas algas, pero además, estos peces pueden traer a sus depredadores que no necesariamente se alimentan de algas.</p>
-					
-					<iframe width="100%" height="215" src="http://www.youtube.com/embed/mghqZlxrTT8?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-				</div>
+               <p><h4 style="text-align: center;">A continuación se muestra la posibilidad de formación de eventos ciclónicos (huracanes, tormentas, depresiones) en proyección a 2 días, que se actualiza periódicamente:</h4>
 
-				<div id="day-panel">
-						<div id="day-label"></div>
-						<input id="day-slider" type="range" min="-6" max="0" value="0">
-				</div>
-				<div id="mymap" style="width:100%;padding:10px;">	  
-					  <div id="map"></div>				  
-				</div>
-				<p style="text-align: center;">Herramienta obtenida de NASA <a href="https://earthdata.nasa.gov/about">EODIS</a></p>
-                </div>
+<h3 style="text-align: center;"><a href="http://www.nhc.noaa.gov/xgtwo/two_pac_2d0.png"><img class="img-responsive" src="http://www.nhc.noaa.gov/xgtwo/two_pac_2d0.png" alt="Probabilidad de formación de ciclones en el pacífico" width="100%" /></a></h3>
+<h3 style="text-align: center;"><a href="http://www.nhc.noaa.gov/xgtwo/two_atl_2d0.png"><img class="img-responsive" src="http://www.nhc.noaa.gov/xgtwo/two_atl_2d0.png" alt="Probabilidad de formación de ciclones en el atlántico" width="100%" /></a></h3>
+<h3 style="text-align: center;"><a href="http://www.nhc.noaa.gov/" target="_blank" rel="noopener noreferrer">Datos obtenidos de NOAA</a></h3>
+<h3 style="text-align: center;"><a href="http://www.nhc.noaa.gov/"><span id="result_box" class="short_text" lang="es" tabindex="-1"><span class="">Pronóstico del clima tropical</span></span> de NOAA</a></h3></p>
+
+               
 			</div>
+			
+            </div>
+				<!--<h2 class="center-text opacity-40">To The Most Powerful Mobile Website</h2>-->
+				<!--<p class="boxed-text half-bottom">
+					Our 10 years of experience put in Appeca to obtain the absolute
+					best, fast loading, powerful Mobile Solution.
+				</p>
+				<div class="single-slider-no-timeout owl-carousel owl-auto-height smal-top">
+					<div>
+						<div class="homepage-cta-button">
+							<div class="button-center-large"><a href="#" class="button button-full button-blue button-sm button-rounded uppercase ultrabold">Purchase Appeca</a></div>
+							<p class="center-text no-bottom opacity-50 font-10">There are multiple Call To Action Styles. Swipe me Left</p>
+						</div>
+					</div>
+					<div>
+						<div class="homepage-cta-socials">
+							<a href="#" class="icon icon-xs no-border facebook-bg icon-round"><i class="fa fa-facebook"></i></a>
+							<a href="#" class="icon icon-xs no-border google-bg icon-round"><i class="fa fa-google-plus"></i></a>
+							<a href="#" class="icon icon-xs no-border twitter-bg icon-round"><i class="fa fa-twitter"></i></a>
+						</div>
+						<p class="center-text no-bottom opacity-50 font-10">There are multiple Call To Action Styles. Swipe me Left</p>
+					</div>
+					<div>
+						<div class="homepage-cta-or">
+							<a href="index-walkthrough.html" class="button button-blue button-rounded button-sm ultrabold uppercase button-center">Get Started</a>
+							<span class="opacity-50 no-bottom">or</span>
+							<a href="index-walkthrough.html" class="button button-green button-rounded button-sm ultrabold uppercase button-center">Take a tour</a>
+							<div class="clear"></div>
+							<p class="center-text no-bottom opacity-50 font-10">There are multiple Call To Action Styles. Swipe me Left</p>
+						</div>
+					</div>
+				</div>-->
+			</div>
+            
+
 <!--End Content-->
 <!--Footer-->
+			<!--
+			<div class="content-strip">
+				<div class="container">
+					<h2 class="ultrabold uppercase color-white center-text">Packed with Goodies</h2>
+					<p class="small-text color-gray-light center-text full-bottom">Everything you need to go mobile today!</p>
+				</div>
+				<div class="decoration deco-3 opacity-60 decoration-margins"></div>
+				<div class="double-slider owl-carousel owl-no-dots">
+					<div>
+						<p class="center-text color-white half-bottom"><i class="fa fa-code fa-2x"></i></p>
+						<h5 class="center-text uppercase ultrabold color-white">Flexible Code</h5>
+						<p class="center-text small-text">
+							Code made so you can edit it however you want.
+						</p>
+					</div>		
+					<div>
+						<p class="center-text color-white half-bottom"><i class="fa fa-info fa-2x"></i></p>
+						<h5 class="center-text uppercase ultrabold color-white">Product Guide</h5>
+						<p class="center-text small-text">
+							A detailed documentation that covers all features.
+						</p>
+					</div>					
+					<div>
+						<p class="center-text color-white half-bottom"><i class="fa fa-cog fa-2x"></i></p>
+						<h5 class="center-text uppercase ultrabold color-white">Lifetime Updates</h5>
+						<p class="center-text small-text">
+							After you purchase Appeca, updates are free for life.
+						</p>
+					</div>			
+					<div>
+						<p class="center-text color-white half-bottom"><i class="fa fa-life-ring fa-2x"></i></p>
+						<h5 class="center-text uppercase ultrabold color-white">Support Forum</h5>
+						<p class="center-text small-text">
+							On our forum we'll answer any question you may have.
+						</p>
+					</div>					
+		
+				</div>
+				<div class="decoration deco-3 opacity-60 decoration-margins half-bottom"></div>
+				<p class="center-text small-text color-white container no-bottom opacity-50 italic">Offer applies to all our customers.</p>
+				<div class="overlay overlay-dark"></div>
+				<div class="content-strip-bg preload-image" data-src="img/pictures/1s.jpg"></div>
+			</div>-->
+			<!--<div class="content half-bottom">
+				<h2 class="ultrabold uppercase center-text">Featured Product</h2>
+				<p class="small-text center-text half-bottom">Featured across the Envato Marketplaces</p>
+				<div class="gallery full-bottom">
+					<a href="img/products/4.png" class="show-gallery polaroid-effect polaroid-effect-small half-bottom" title="Galleries have Captions.">
+						<img data-src="img/products/4.png" src="img/empty.png" class="preload-image responsive-image no-bottom"  alt="Image Unavailable">
+					</a>
+					<a href="img/products/1.png" class="show-gallery" title="And they are just a Title Tag.">
+						<img class="polaroid-effect polaroid-effect-small preload-image responsive-image no-bottom one-third" data-src="img/products/1.png" src="img/empty.png" alt="img">
+					</a>
+					<a href="img/products/2.png" class="show-gallery" title="Simple and Easy to Use.">
+						<img class="polaroid-effect polaroid-effect-small preload-image responsive-image no-bottom one-third" data-src="img/products/2.png" src="img/empty.png" alt="img">
+					</a>
+					<a href="img/products/3.png" class="show-gallery" title="Stunning on Your Mobile.">
+						<img class="polaroid-effect polaroid-effect-small preload-image responsive-image no-bottom one-third last-column" data-src="img/products/3.png" src="img/empty.png" alt="img">
+					</a>
+					<div class="clear"></div>
+				</div>
+				<p class="boxed-text-large full-bottom">
+					Numerous products from our portfolio have been featured on the Envato Marketplaces and we're always proud to show them off!
+				</p>
+				<a href="#" class="button button-rounded button-center-large button-s button-blue uppercase ultrabold full-bottom">Purchase Today</a>
+			</div>
 			
+			<div class="decoration decoration-margins"></div>
+			
+			<div class="content-strip">
+				<div class="single-slider owl-carousel owl-auto-height owl-no-dots">
+					<div class="container">
+						<h3 class="ultrathin italic large-line-height color-white opacity-80 center-text">
+							The code is always great with any Enabled template,
+							but its the customer support that wins me over all 
+							the time. So responsive and helpful!
+						</h3>
+						<div class="center-stars half-top">
+							<i class="fa fa-star color-yellow-dark"></i>
+							<i class="fa fa-star color-yellow-dark"></i>
+							<i class="fa fa-star color-yellow-dark"></i>
+							<i class="fa fa-star color-yellow-dark"></i>
+							<i class="fa fa-star color-yellow-dark"></i>
+						</div>
+						<a href="#" class="small-text color-blue2-light center-text half-top normal-text">Eminat - ThemeForest Buyer</a>
+					</div>					
+					<div class="container">
+						<h3 class="ultrathin italic large-line-height color-white opacity-80 center-text">
+							Awesome customer service, sent a request and was answered promptly. Great product,
+							well worth purchasing for mobile templates.
+						</h3>
+						<div class="center-stars half-top">
+							<i class="fa fa-star color-yellow-dark"></i>
+							<i class="fa fa-star color-yellow-dark"></i>
+							<i class="fa fa-star color-yellow-dark"></i>
+							<i class="fa fa-star color-yellow-dark"></i>
+							<i class="fa fa-star color-yellow-dark"></i>
+						</div>
+						<a href="#" class="small-text color-blue2-light center-text half-top normal-text">Globo Logic - ThemeForest Buyer</a>
+					</div>			
+					<div class="container">
+						<h3 class="ultrathin italic large-line-height color-white opacity-80 center-text">
+							Wonderful support and design! Had some questions and got fast support and answers. 
+							Highly recommend Enabled products.
+						</h3>
+						<div class="center-stars half-top">
+							<i class="fa fa-star color-yellow-dark"></i>
+							<i class="fa fa-star color-yellow-dark"></i>
+							<i class="fa fa-star color-yellow-dark"></i>
+							<i class="fa fa-star color-yellow-dark"></i>
+							<i class="fa fa-star color-yellow-dark"></i>
+						</div>
+						<a href="#" class="small-text color-blue2-light center-text half-top normal-text">Bit Mash - ThemeForest Buyer</a>
+					</div>
+				</div>
+				<div class="overlay overlay-dark"></div>
+				<div class="content-strip-bg preload-image" data-src="img/pictures/1s.jpg"></div>
+			</div>
+			<div class="decoration decoration-margins"></div>
+			
+			<div class="content">
+				<h1 class="uppercase ultrabold center-text">Much More to see</h1>
+				<p class="small-text center-text color-blue-dark half-bottom">There are tones of awesome features waiting</p>
+				<p class="boxed-text full-bottom">
+					There are hundreds of features waiting to be discovered, and they are just a tap away!
+				</p>
+				<a href="#" data-deploy-menu="menu-1" class="button button-blue button-rounded button-center-large uppercase ultrabold">Show me More</a>
+			</div>
+			
+			<div class="decoration decoration-margins"></div>
+			-->
 			<div class="footer footer-dark">
 				<!--<a href="#" class="footer-logo"></a>-->
 				<img src="img/static/usaid-logo-opt.png" style="margin: auto;">
@@ -453,6 +357,5 @@ function init(){
 		function navigatepage($pagename){
 	                  window.location.href = $pagename;
 	}
-</script>
-
+	</script>
 </body>
