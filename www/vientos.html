@@ -17,6 +17,12 @@
 		width: 100%;
 		height: 700px;
 	}
+
+	#coords {
+		text-align:center;
+		background-color: #ffffff;
+		height:25px;
+	}
 </style>
 </head>
 <body>
@@ -87,7 +93,7 @@
                 <!--p>
 					<iframe src="https://embed.windytv.com/embed2.html?lat=9.933&amp;lon=-84.083&amp;zoom=5&amp;level=surface&amp;overlay=wind&amp;menu=true&amp;message=&amp;marker=true&amp;forecast=12&amp;calendar=now&amp;location=ip&amp;type=map&amp;actualGrid=%5Bobject%20HTMLSelectElement%5D&amp;metricWind=km%2Fh&amp;metricTemp=%C2%B0C" width="100%" height="500" frameborder="0"></iframe>
 				</p-->
-
+				<div id="coords"></div>
 				<div id="map">
 					<div id="windy"></div>
 				</div>
@@ -224,19 +230,48 @@
 		forecast:'24',
 		calendar:'now'
 	}
+	var Coords= L.Control.Coords = L.Control.extend({
+            options: {
+                position: 'topright'
+            },
+            onAdd: function(map) {
+                var mc = L.DomUtil.create('div','Coordenadas');
+                var html="<span id='coords'></span>";
+                mc.innerHTML = html;
+                return mc;
+            },
+
+            onRemove: function(map) {
+                //
+            }
+	
+	});
 
 	windyInit( options, windyAPI => {
 		// windyAPI is ready, and contain 'map', 'store',
 		// 'picker' and other usefull stuff
 
 		const { picker, overlays, broadcast, map } = windyAPI
-
+		
+		//map.addControl(new Coords());
+		
+		
+		  
 		overlays.wind.setMetric('km/h');
 
 		picker.on('pickerOpened', latLon => {
-
+			
+			let { lat, lon, values, overlay } = picker.getParams()
+			$('#coords').html('Latitud: ' + lat.toFixed(6) + ", Longitud: " + lon.toFixed(6));
+			//$('.leaflet-control-container').show();
 			W.rootScope.isMobile=false;
 
+		});
+
+		picker.on('pickerMoved', latlon => {
+			let { lat, lon, values, overlay } = picker.getParams()
+			$('#coords').html('Latitud: ' + lat.toFixed(6) + ", Longitud: " + lon.toFixed(6));
+			//$('.leaflet-control-container').show();
 		});
 
 		broadcast.on("rqstOpen", params => {
