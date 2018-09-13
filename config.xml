@@ -7,6 +7,7 @@
     <author email="info@centroclima.org" href="http://climapesca.com">
         Disruptive Partners
     </author>
+	<icon src="icon.png" />
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="19" />
