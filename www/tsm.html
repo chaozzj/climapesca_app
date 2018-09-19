@@ -17,7 +17,7 @@ crossorigin=""></script>
 <style>
 	#map {
 		width: 100%;
-		height: 700px;
+		height: 500px;
 	}
 	#cmap {
 		width:100%;
@@ -123,16 +123,16 @@ crossorigin=""></script>
 				<div class="content">	
 					<p>El mapa de temperatura superficial del mar, puede mostrar la presencia o no de algunos peces si se conoce su umbral óptimo de temperatura. Sin embargo, influyen otros factores como la cantidad de alimento disponible. Haga clic en el mapa para consultar la temperatura.</p>
 					
-					<iframe width="100%" height="215" src="http://www.youtube.com/embed/sjYl-lvMXr8?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-				</div>
-					
 					<div id="cmap">
 						<div id="map"></div>
 					</div>
 						<p style="text-align: center;">Datos obtenidos de <a href="https://nowcoast.noaa.gov/">nowCOAST</a></p>
-					</div>
-				
-			</div>
+					<!--youtube video-->
+					<h3 style="text-align: center;">Ver video explicativo</h3>
+					<div id="ytplayer"></div>
+				</div>
+			</div>	
+		</div>
             
 <!--End Content-->
 <!--Footer-->
@@ -374,4 +374,22 @@ crossorigin=""></script>
 	                  window.location.href = $pagename;
 	}
 	</script>
+<script>
+  // Load the IFrame Player API code asynchronously.
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/player_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  // Replace the 'ytplayer' element with an <iframe> and
+  // YouTube player after the API code downloads.
+  var player;
+  function onYouTubePlayerAPIReady() {
+    player = new YT.Player('ytplayer', {
+      height: '215',
+      width: '100%',
+      videoId: 'sjYl-lvMXr8'
+    });
+  }
+</script>
 </body>
