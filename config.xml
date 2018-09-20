@@ -126,6 +126,5 @@
     </feature>
     <engine name="ios" spec="^4.2.5" />
 	<platform name="android">
-  <resource-file src="google-services.json" target="google-services.json" />
 </platform>
 </widget>
