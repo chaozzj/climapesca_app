@@ -122,11 +122,9 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <icon src="icon.png" />
 	<feature name="Whatsapp">
         <param name="android-package" value="mobi.moica.whatsapp.Whatsapp" />
     </feature>
-    <engine name="ios" spec="^4.2.5" />
 	<platform name="android">
 </platform>
 </widget>
