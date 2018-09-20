@@ -252,18 +252,13 @@
 		// 'picker' and other usefull stuff
 
 		const { picker, overlays, broadcast, map } = windyAPI
-		
-		//map.addControl(new Coords());
-		
-		
-		  
+				  
 		overlays.wind.setMetric('km/h');
 
 		picker.on('pickerOpened', latLon => {
 			
 			let { lat, lon, values, overlay } = picker.getParams()
 			$('#coords').html('Latitud: ' + lat.toFixed(6) + ", Longitud: " + lon.toFixed(6));
-			//$('.leaflet-control-container').show();
 			W.rootScope.isMobile=false;
 
 		});
@@ -271,7 +266,6 @@
 		picker.on('pickerMoved', latlon => {
 			let { lat, lon, values, overlay } = picker.getParams()
 			$('#coords').html('Latitud: ' + lat.toFixed(6) + ", Longitud: " + lon.toFixed(6));
-			//$('.leaflet-control-container').show();
 		});
 
 		broadcast.on("rqstOpen", params => {
