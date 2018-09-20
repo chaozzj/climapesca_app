@@ -138,3 +138,5 @@
 .spinner-magenta:after{box-shadow:inset #8067B7 0 0 0 1px!important;}
 .spinner-black:after{box-shadow:inset #000000 0 0 0 1px!important;}
 .spinner-brown:after{box-shadow:inset #8E8271 0 0 0 1px!important;}
+
+.banderas {max-width: 200px; margin: 0px auto;}

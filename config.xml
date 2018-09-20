@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.climapesca.app" version="4.2.3" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="org.climapesca.app" version="4.2.5" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Clima Pesca Digital</name>
     <description>
         Iniciativa de la Organización del Sector Pesquero y Acuícola.
@@ -7,6 +7,7 @@
     <author email="info@centroclima.org" href="http://climapesca.com">
         Disruptive Partners
     </author>
+	<icon src="icon.png" />
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="19" />
@@ -101,7 +102,9 @@
         <icon height="360" platform="windows" src="www/res/icon/windows/Wide310x150Logo.scale-240.png" width="744" />
         <splash height="1920" platform="windows" src="www/res/screen/windows/SplashScreenPhone.scale-240.png" width="1152" />
     </platform>
+	<allow-navigation href="*://*youtube.com" />
     <access origin="*" />
+	<access origin="whatsapp:*" launch-external="yes" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -117,5 +120,11 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <icon src="icon.png" />
-    <engine name="ios" spec="^4.5.5" />
+	<feature name="Whatsapp">
+        <param name="android-package" value="mobi.moica.whatsapp.Whatsapp" />
+    </feature>
+    <engine name="ios" spec="^4.2.5" />
+	<platform name="android">
+  <resource-file src="google-services.json" target="google-services.json" />
+</platform>
 </widget>

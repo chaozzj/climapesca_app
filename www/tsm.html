@@ -17,7 +17,7 @@ crossorigin=""></script>
 <style>
 	#map {
 		width: 100%;
-		height: 700px;
+		height: 500px;
 	}
 	#cmap {
 		width:100%;
@@ -64,7 +64,7 @@ crossorigin=""></script>
 	<div id="header" class="header-logo-left header-dark">
 		<a href="#" onclick="navigatepage('index.html')"class="header-logo"></a>
 		<a href="#" class="header-icon header-icon-1 hamburger-animated" data-deploy-menu="menu-1"></a>
-		<a href="#" class="header-icon header-icon-2 font-14" data-deploy-menu="menu-4"><i class="fa fa-envelope-o"></i></a>
+		<a href="https://wa.me/50378594447‬" class="header-icon header-icon-2 font-14"><i class="fa fa-whatsapp"></i></a>
 		<!--<a href="#" class="header-icon header-icon-3 font-13 no-border" data-deploy-menu="menu-2"><i class="fa fa-bell-o font-12"></i></a>-->
 	</div>
 
@@ -102,7 +102,8 @@ crossorigin=""></script>
 				<div id="sub-4" class="submenu-item">
 					<a href="#" onclick="navigatepage('meteorolgia.html')">Meteorología y Oceonografía</a>
 				</div>
-				<a class="menu-item" href="#"  data-deploy-menu="menu-4"><i class="font-14 fa color-night-light fa-envelope"></i><strong>Contáctenos</strong></a>
+				<a class="menu-item" href="https://wa.me/50378594447"><i class="font-14 fa color-night-light fa-whatsapp"></i><strong>Contáctenos</strong></a>
+				<a class="menu-item" href="mailto:info@climapesca.org"><i class="font-14 fa color-night-light fa-envelope"></i><strong>Email</strong></a>
 			</div>
 		</div>
 	</div>
@@ -119,13 +120,19 @@ crossorigin=""></script>
 					<iframe src="https://embed.windytv.com/embed2.html?lat=9.933&amp;lon=-84.083&amp;zoom=5&amp;level=surface&amp;overlay=sst&amp;menu=true&amp;message=&amp;marker=true&amp;forecast=24&amp;calendar=now&amp;location=ip&amp;type=map&amp;actualGrid=&amp;metricWind=m%2Fs&amp;metricTemp=%C2%B0C" width="100%" height="400" frameborder="0"></iframe>
 				</p>
 				<p style="text-align: center;">Datos obtenidos de <a href="https://www.windy.com/">Windy</a></p-->
-				<div id="cmap">
-					<div id="map"></div>
+				<div class="content">	
+					<p>El mapa de temperatura superficial del mar, puede mostrar la presencia o no de algunos peces si se conoce su umbral óptimo de temperatura. Sin embargo, influyen otros factores como la cantidad de alimento disponible. Haga clic en el mapa para consultar la temperatura.</p>
+					
+					<div id="cmap">
+						<div id="map"></div>
+					</div>
+						<p style="text-align: center;">Datos obtenidos de <a href="https://nowcoast.noaa.gov/">nowCOAST</a></p>
+					<!--youtube video-->
+					<h3 style="text-align: center;">Ver video explicativo</h3>
+					<div id="ytplayer"></div>
 				</div>
-					<p style="text-align: center;">Datos obtenidos de <a href="https://nowcoast.noaa.gov/">nowCOAST</a></p>
-                </div>
-				
-			</div>
+			</div>	
+		</div>
             
 <!--End Content-->
 <!--Footer-->
@@ -367,4 +374,22 @@ crossorigin=""></script>
 	                  window.location.href = $pagename;
 	}
 	</script>
+<script>
+  // Load the IFrame Player API code asynchronously.
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/player_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  // Replace the 'ytplayer' element with an <iframe> and
+  // YouTube player after the API code downloads.
+  var player;
+  function onYouTubePlayerAPIReady() {
+    player = new YT.Player('ytplayer', {
+      height: '215',
+      width: '100%',
+      videoId: 'sjYl-lvMXr8'
+    });
+  }
+</script>
 </body>
