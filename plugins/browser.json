@@ -25,6 +25,9 @@
         },
         "cordova-plugin-camera": {
             "PACKAGE_NAME": "org.climapesca.app"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "org.climapesca.app"
         }
     },
     "dependent_plugins": {}

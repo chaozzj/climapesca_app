@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.climapesca.app" version="4.2.4" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="org.climapesca.app" version="4.2.6" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage" />
     </feature>
@@ -35,6 +35,9 @@
     <feature name="PushNotification">
         <param name="ios-package" value="PushPlugin" />
     </feature>
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
+    </feature>
     <name>Clima Pesca Digital</name>
     <description>
         Iniciativa de la Organización del Sector Pesquero y Acuícola.
@@ -42,6 +45,7 @@
     <author email="info@centroclima.org" href="http://climapesca.com">
         Disruptive Partners
     </author>
+    <icon src="icon.png" />
     <content src="index.html" />
     <config-file mode="replace" overwrite="true" parent="NSCameraUsageDescription" platform="ios" target="*-Info.plist">
         <string>Soon we will add recognition features, The user will be able to store captures of the current status in the maps obtained directly from the app and read QR codes for tracking</string>
@@ -49,14 +53,15 @@
     <config-file mode="replace" overwrite="true" parent="NSPhotoLibraryUsageDescription" platform="ios" target="*-Info.plist">
         <string>need to access photo library to get pictures from there</string>
     </config-file>
+    <allow-navigation href="*://*youtube.com" />
     <access origin="*" />
+    <access launch-external="yes" origin="whatsapp:*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <icon src="icon.png" />
     <icon height="57" platform="ios" src="www/res/icon/ios/icon.png" width="57" />
     <icon height="114" platform="ios" src="www/res/icon/ios/icon@2x.png" width="114" />
     <icon height="40" platform="ios" src="www/res/icon/ios/icon-40.png" width="40" />

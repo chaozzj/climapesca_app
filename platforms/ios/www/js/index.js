@@ -35,6 +35,18 @@ var app = {
     onDeviceReady: function() {
         console.log('Received Device Ready Event');
         console.log('calling setup push');
+        /*var push = PushNotification.init({
+            android: {},
+            browser: {
+              pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+            },
+            ios: {
+                alert: "true",
+                badge: true,
+                sound: 'false'
+            },
+            windows: {}
+      });*/
         app.setupPush();
     },
 
@@ -42,9 +54,11 @@ var app = {
         console.log('calling push init');
         var push = PushNotification.init({
             "android": {
-                "senderID": "XXXXXXXX"
+                "senderID": "641385998003"
             },
-            "browser": {},
+            "browser": { 
+                pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+            },
             "ios": {
                 "sound": true,
                 "vibration": true,
@@ -64,12 +78,12 @@ var app = {
                 // Post registrationId to your app server as the value has changed
             }
 
-            var parentElement = document.getElementById('registration');
+            /*var parentElement = document.getElementById('registration');
             var listeningElement = parentElement.querySelector('.waiting');
             var receivedElement = parentElement.querySelector('.received');
 
             listeningElement.setAttribute('style', 'display:none;');
-            receivedElement.setAttribute('style', 'display:block;');
+            receivedElement.setAttribute('style', 'display:block;');*/
         });
 
         push.on('error', function(e) {
