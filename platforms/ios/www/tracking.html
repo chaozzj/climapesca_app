@@ -1,20 +1,14 @@
-<!DOCTYPE HTML>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-<title>Clima Pesca Digital</title>
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="stylesheet" type="text/css" href="css/framework.css">
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-<!--JqueryMobile-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>Clima Pesca Digital</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.23/esri/css/esri.css">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 
-
-<!--End JqueryMobile-->
- <link rel="stylesheet" href="https://js.arcgis.com/3.23/esri/css/esri.css">
- <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-<style>
-html,body, div[data-role ="page"] {
+    <style type="text/css">
+        html,body, div[data-role ="page"] {
             height: 100%;
             width: 100%;
             margin: 0px;
@@ -90,78 +84,18 @@ html,body, div[data-role ="page"] {
             opacity: 0.6;
             -webkit-border-radius: 10px;
             -moz-border-radius: 10px;
-            borde
-
-</style>
+            border-radius: 10px;
+        }
+    </style>
 </head>
+
 <body>
-<!--Header-->
-
-	
-<div id="preloader" class="preloader-light">
-	<h1></h1>
-	<div id="preload-spinner"></div>
-	<p>Clima Pesca Digital</p>
-	<em>Iniciativa de la Organización del Sector Pesquero y Acuícola.</em>
-</div>
-	
-<div id="page-transitions">
-	<div id="header" class="header-logo-left header-dark">
-		<a href="#" onclick="navigatepage('index.html')"class="header-logo"></a>
-		<a href="#" class="header-icon header-icon-1 hamburger-animated" data-deploy-menu="menu-1"></a>
-		<a href="https://wa.me/50378594447‬" class="header-icon header-icon-2 font-14"><i class="fa fa-whatsapp"></i></a>
-		<!--<a href="#" class="header-icon header-icon-3 font-13 no-border" data-deploy-menu="menu-2"><i class="fa fa-bell-o font-12"></i></a>-->
-	</div>
-
-	<div id="menu-1" class="menu-wrapper menu-light menu-sidebar-left menu-large">
-		<div class="menu-scroll">
-			<div class="menu-socials">
-			</div>
-			<a href="#" onclick="navigatepage('index.html')" class="menu-logo"></a>
-			<em class="menu-sub-logo">Iniciativa de la Organización del Sector Pesquero y Acuícola.</em>
-			<div class="menu">
-				<em class="menu-divider">Navegación<i class="fa fa-navicon"></i></em>
-				<a class="menu-item active-item" href="#" onclick="navigatepage('index.html')"><i class="font-15 fa color-night-light fa-home"></i><strong>Inicio</strong></a>
-				<a class="menu-item" data-submenu="sub-1" href="#"><i class="font-13 fa color-night-light fa-file"></i><strong>Autoridad</strong></a>
-				<div id="sub-1" class="submenu-item">
-					<a href="#" onclick="navigatepage('autoridad.html')">Autoridad</a>
-					<a href="#" onclick="navigatepage('equipo.html')">Equipo Técnico</a>
-				</div>
-				<a class="menu-item" data-submenu="sub-2" href="#"><i class="font-13 fa color-night-light fa-info-circle"></i><strong>Información Disponible</strong></a>
-				<div id="sub-2" class="submenu-item">
-					<a href="#" onclick="navigatepage('avances.html')">Avances</a>
-					<a href="#" onclick="navigatepage('analsem.html')">Condiciones Registradas En La Semana</a>
-				</div>
-				<a class="menu-item" data-submenu="sub-3" href="#"><i class="font-13 fa color-night-light fa-info-circle"></i><strong>Herramientas</strong></a>
-				<div id="sub-3" class="submenu-item">
-					<a href="#" onclick="navigatepage('corrientes.html')">Corrientes Marinas</a>
-					<a href="#" onclick="navigatepage('clorofila.html')">Clorofila</a>
-					<a href="#" onclick="navigatepage('fases.html')">Fases de la Luna</a>
-					<a href="#" onclick="navigatepage('oleaje.html')">Oleaje</a>
-					<a href="#" onclick="navigatepage('presion.html')">Presión Atmosférica</a>
-					<a href="#" onclick="navigatepage('vientos.html')">Vientos</a>
-					<a href="#" onclick="navigatepage('tsm.html')">Temperatura superficial del mar</a>
-					<a href="#" onclick="navigatepage('ciclones.html')">Vigilancia de ciclones tropicales</a>
-				</div>
-				<a class="menu-item" data-submenu="sub-4" href="#"><i class="font-13 fa color-night-light fa-info-circle"></i><strong>Pronóstico</strong></a>
-				<div id="sub-4" class="submenu-item">
-					<a href="#" onclick="navigatepage('meteorolgia.html')">Meteorología y Oceonografía</a>
-				</div>
-				<a class="menu-item" href="https://wa.me/50378594447"><i class="font-14 fa color-night-light fa-whatsapp"></i><strong>Contáctenos</strong></a>
-				<a class="menu-item" href="mailto:info@climapesca.org"><i class="font-14 fa color-night-light fa-envelope"></i><strong>Email</strong></a>
-			</div>
-		</div>
-	</div>
-<!--End Header-->
-
-<!--Content-->
-	<div id="page-content" class="page-content">
-		
 <div data-role="page" id="home">
 
     <div data-theme="b" data-role="header" data-position="fixed">
-        <a href="#" data-role="button" data-icon="grid" data-iconpos="notext" onclick="controller.showLocation();">Location</a>
-        <a href="#settings" data-role="button" data-icon="gear" class="ui-btn-right" data-iconpos="notext">Settings</a>
+        <h3>Clima Pesca</h3>
+        <a href="#" data-role="button" data-icon="grid" data-iconpos="notext" onclick="controller.showLocation();">Posicionamiento</a>
+        <a href="#settings" data-role="button" data-icon="gear" class="ui-btn-right" data-iconpos="notext">Ajustes</a>
     </div>
 
     <div id="div1" class="tableDiv">
@@ -205,26 +139,26 @@ html,body, div[data-role ="page"] {
 
 <div data-role="page" id="settings">
     <div data-theme="b" data-role="header" data-add-back-btn="true">
-        <h1>Settings</h1>
+        <h1>Ajustes</h1>
     </div>
     <div data-role="content">
 
         <div class="settings" style="margin-top: 15px;">
-            <div>Geolocazacion:</div>
+            <div>Geolocalizar:</div>
             <select name="slider" id="slider-geo-on-off" data-role="slider" data-theme="a">
                 <option value="off">Off</option>
                 <option value="on" selected>On</option>
             </select>
         </div>
         <div class="settings">
-            <div>High Accuracy:</div>
+            <div>Alta precision:</div>
             <select name="slider" id="slider-high-accuracy" data-role="slider" data-theme="a">
                 <option value="off">Off</option>
                 <option value="on" selected>On</option>
             </select>
         </div>
         <div class="settings-border1">
-            <div class="settings-label">Posicion Actual</div>
+            <div class="settings-label">Pocision Actual</div>
             <div data-role="fieldcontain">
                 <label for="max-age-current-pos">&nbsp;&nbsp;maxAge (ms):</label>
                 <input type="text" name="currentPosMaxAge" id="max-age-current-pos" value="60000"  />
@@ -234,7 +168,7 @@ html,body, div[data-role ="page"] {
                 <input type="text" name="currentPosTimeout" id="timeout-current-pos" value="60000"  />
             </div>
             <div class="settings" style="width: 200px; margin-top: 15px;">
-                <button data-theme="b" onclick="controller.restartGeo()" data-mini="true">Restart Geo</button>
+                <button data-theme="b" onclick="controller.restartGeo()" data-mini="true">Reiniciar</button>
             </div>
         </div>
         <div class="settings-border1">
@@ -248,25 +182,25 @@ html,body, div[data-role ="page"] {
                 <input type="text" name="currentPosTimeout" id="timeout-watch-pos" value="60000"  />
             </div>
             <div class="settings" style="width: 200px; margin-top: 15px;">
-                <button data-theme="b" onclick="controller.restartGeo()" data-mini="true">Restart Geo</button>
+                <button data-theme="b" onclick="controller.restartGeo()" data-mini="true">Reiniciar</button>
             </div>
         </div>
         <div class="settings">
-            <div>Mantener Muntos en el Mapa:</div>
+            <div>Accumular puntos en el mapa:</div>
             <select name="slider" id="slider-accumulate-pts" data-role="slider" data-theme="a">
                 <option value="off">Off</option>
                 <option value="on" selected>On</option>
             </select>
         </div>
         <div class="settings">
-            <div>Mostrar Alertas de Error:</div>
+            <div>Manejar errores usando alertas:</div>
             <select name="slider" id="slider-handle-errs" data-role="slider" data-theme="a">
                 <option value="off">Off</option>
                 <option value="on" selected>On</option>
             </select>
         </div>
         <div id="emailDiv" class="settings" style="width: 200px; margin-top: 15px;">
-            <button id="sendEmailButton" data-theme="b" onclick="controller.utils.sendEmail()">Email CSV</button>
+            <button id="sendEmailButton" data-theme="b" onclick="navigatepage('index.html')">Volver al inicio</button>
         </div>
     </div>
 </div>
@@ -599,7 +533,7 @@ html,body, div[data-role ="page"] {
             var html5Lat = position.coords.latitude; //Get latitude
             var html5Lon = position.coords.longitude; //Get longitude
             var html5TimeStamp = position.timestamp; //Get timestamp
-            var html5Accuracy = position.coords.accuracy; 	//Get accuracy in meters
+            var html5Accuracy = position.coords.accuracy;   //Get accuracy in meters
             var html5Heading = position.coords.heading;
             var html5Speed = position.coords.speed;
             var html5Altitude = position.coords.altitude;
@@ -945,87 +879,10 @@ html,body, div[data-role ="page"] {
             }
     );
 </script>
-
-<!--End Content-->
-<!--Footer-->
-			
-			
-		</div>  
-	</div>
-	
-	<!-- Share Menu -->
-	<div id="menu-share" data-menu-size="380" class="menu-wrapper menu-light menu-bottom">
-		<em class="menu-divider menu-divider-contrast uppercase">Compartir esta App<i class="fa fa-share-alt"></i></em>
-		<div class="content">
-			<ul class="link-list">
-				<li><a class="no-border" href="https://www.facebook.com/sharer/sharer.php?u=http://climapesca.org/"><i class="fa fa-facebook font-14 facebook-color"></i>Facebook<i class="fa fa-angle-right"></i></a></li>
-				<li><a class="no-border" href="https://twitter.com/home?status=climapesca.org"><i class="fa fa-twitter font-14 twitter-color"></i>Twitter<i class="fa fa-angle-right"></i></a></li>
-				<li><a class="no-border" href="whatsapp://send" data-text="Check this out!" data-href="http://climapesca.org"><i class="fa fa-whatsapp font-16 whatsapp-color"></i>Whatsapp<i class="fa fa-angle-right"></i></a></li>
-				<li><a class="no-border" href="https://plus.google.com/share?url=http://climapesca.org"><i class="fa fa-google font-14 google-color"></i>Google +<i class="fa fa-angle-right"></i></a></li>
-				<li><a class="no-border" href="mailto:name@domain.com?subject=climapesca.org"><i class="fa fa-envelope font-14 mail-color"></i>Mail Link<i class="fa fa-angle-right"></i></a></li>
-				<li><a class="no-border close-menu"><i class="fa fa-times color-red-dark font-15"></i>Cancel<i class="fa fa-angle-right"></i></a></li>
-			</ul>
-		</div>
-	</div>
-	
-	<!-- Contact Icon Menu -->
-	<div id="menu-4" data-menu-size="385" class="menu-wrapper menu-light menu-bottom menu-contact">
-		<div class="menu-scroll">
-			<div class="contact-form">
-				<div class="formSuccessMessageWrap" id="formSuccessMessageWrap">
-					<p class="center-text full-bottom full-top"><i class="fa fa-2x fa-paper-plane-o"></i></p>
-					<h4 class="uppercase ultrabold half-bottom center-text">Mensaje enviado</h4>
-					<p class="center-text boxed-text half-bottom">
-						Generalmente respondemos en un lapso no mayor a 24 horas. <br/> Gracias por contactarnos.
-					</p>
-					<a href="#" class="button button-round color-white button-blue button-xs button-center close-menu uppercase bold full-bottom full-top">Volver</a>
-				</div>
-				<form action="https://climapesca.org/app-core/app-mail.php" method="post" class="contactForm" id="contactForm">
-					<fieldset>
-						<div class="menu-contact-title half-top">
-							<h4>Contáctenos</h4>
-							<h5 class="full-bottom">Estaremos en contacto contigo proximamente.</h5>
-						</div>
-						<div class="formValidationError" id="contactNameFieldError">Nombre es requerido.</div>
-						<div class="formValidationError" id="contactEmailFieldError">Correo es requerido</div>
-						<div class="formValidationError" id="contactEmailFieldError2">Dirección de correo no válida</div>
-						<div class="formValidationError" id="contactMessageTextareaError"></div>
-						<div class="formFieldWrap">
-							<label class="field-title contactNameField" for="contactNameField"></label>
-							<input type="text" name="contactNameField" placeholder="Nombre" value="" class="contactField requiredField" id="contactNameField" />
-						</div>
-						<div class="formFieldWrap">
-							<label class="field-title contactEmailField" for="contactEmailField"></label>
-							<input type="text" name="contactEmailField" placeholder="Correo Electrónico" value="" class="contactField requiredField requiredEmailField" id="email" />
-						</div>
-						<div class="clear"></div>
-						<div class="formTextareaWrap half-bottom">
-							<label class="field-title contactMessageTextarea" for="contactMessageTextarea"></label>
-							<textarea name="contactMessageTextarea" placeholder="Cuerpo del mensaje." class="contactTextarea requiredField" id="message"></textarea>
-						</div>
-						<div class="contactFormButton">
-							<input type="submit" class="buttonWrap contactSubmitButton" id="contactSubmitButton" value="Enviar Mensaje" data-formId="contactForm" />
-						</div>
-					</fieldset>
-				</form>
-			</div>
-		</div>
-	</div>	
-	
-	<a href="#" class="back-to-top-badge back-to-top-small"><i class="fa fa-angle-up"></i>Back to Top</a>
-</div>
-<script type="text/javascript" src="cordova.js"></script>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/custom.js"></script>
-<script type="text/javascript" src="js/plugins.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
-<script type="text/javascript" src="js/functions.js"></script>
-<script type="text/javascript">
-        app.initialize();
+<script type="text/javascript"> 
+        function navigatepage($pagename){
+                      window.location.href = $pagename;
+    }
 </script>
-	<script type="text/javascript">	
-		function navigatepage($pagename){
-	                  window.location.href = $pagename;
-	}
-	</script>
 </body>
+</html>
