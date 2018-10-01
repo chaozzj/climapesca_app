@@ -23,6 +23,9 @@
     <plugin name="cordova-plugin-dialogs" source="npm" spec="~1.2.1" />
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
     <plugin name="cordova-plugin-camera" spec="~4.0.3" />
+    <plugin name="cordova-plugin-geolocation" spec="~4">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="This app uses your location for maps." />
+    </plugin>
     <platform name="android">
         <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="www/res/icon/android/drawable-mdpi-icon.png" />
