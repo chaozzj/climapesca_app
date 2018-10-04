@@ -59,6 +59,7 @@
 		C7E7CC30E63942B9918C677F /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 272769C11A3A4ED69EB43A64 /* libsqlite3.tbd */; };
 		17035AE5119147A19D97CD4D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D46CCFA0B50C4712BD3700A7 /* libz.tbd */; };
 		73120560A9404ADBAF167739 /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E397E8CC81E49498E518656 /* CDVInAppBrowser.m */; };
+		66DE0AB6723640DAB218CB06 /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BFBC8D961946A3B280BFF6 /* CDVLocation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,6 +168,8 @@
 		D46CCFA0B50C4712BD3700A7 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 		2E397E8CC81E49498E518656 /* CDVInAppBrowser.m */ = {isa = PBXFileReference; name = "CDVInAppBrowser.m"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		9DD59175964B4529B9025820 /* CDVInAppBrowser.h */ = {isa = PBXFileReference; name = "CDVInAppBrowser.h"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		E3BFBC8D961946A3B280BFF6 /* CDVLocation.m */ = {isa = PBXFileReference; name = "CDVLocation.m"; path = "cordova-plugin-geolocation/CDVLocation.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		F38A51A6DF754B2CB59A84F9 /* CDVLocation.h */ = {isa = PBXFileReference; name = "CDVLocation.h"; path = "cordova-plugin-geolocation/CDVLocation.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -371,6 +374,8 @@
 				389391C26A5B49A985453EE4 /* GoogleCloudMessaging.h */,
 				2E397E8CC81E49498E518656 /* CDVInAppBrowser.m */,
 				9DD59175964B4529B9025820 /* CDVInAppBrowser.h */,
+				E3BFBC8D961946A3B280BFF6 /* CDVLocation.m */,
+				F38A51A6DF754B2CB59A84F9 /* CDVLocation.h */,
 			);
 			name = Plugins;
 			path = "Clima Pesca Digital/Plugins";
@@ -493,6 +498,7 @@
 				90A9DFE492844A74A0333D25 /* AppDelegate+notification.m in Sources */,
 				CD9E17A48FBC434E97643E8C /* PushPlugin.m in Sources */,
 				73120560A9404ADBAF167739 /* CDVInAppBrowser.m in Sources */,
+				66DE0AB6723640DAB218CB06 /* CDVLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

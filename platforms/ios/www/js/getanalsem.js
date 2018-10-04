@@ -1,7 +1,7 @@
 
 $(document).ready(function()
  {
-   var url="https://climapesca.org/api/get_category_posts/?id=6/";
+   var url="http://climapesca.org/api/get_category_posts/?id=6/";
    //var url="https://climapesca.org/?json=get_tag_posts&tag_slug=actualidad";
    $.getJSON(url,function(result){
     $.each(result.posts, function(i, field){

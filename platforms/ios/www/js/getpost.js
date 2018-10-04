@@ -3,7 +3,7 @@ $(document).ready(function()
    var orgn = window.location.href;
    var urlpost = new URL(orgn);
    var mid= urlpost.searchParams.get("id");
-   var url="https://climapesca.org/api/get_post/?id="+mid;
+   var url="http://climapesca.org/api/get_post/?id="+mid;
    //var url="https://climapesca.org/?json=get_tag_posts&tag_slug=actualidad";
    $.getJSON(url,function(result){
     $.each(result, function(i, field){
