@@ -24,6 +24,7 @@
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
     <plugin name="cordova-plugin-camera" spec="~4.0.3" />
     <plugin name="cordova-plugin-geolocation" spec="~4">
+	    <plugin name="cordova-plugin-inappbrowser" />
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="This app uses your location for maps." />
     </plugin>
     <platform name="android">
