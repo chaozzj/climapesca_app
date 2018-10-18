@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.climapesca.app" version="4.3.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="org.climapesca.app" version="4.3.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Clima Pesca Digital</name>
     <description>
         Iniciativa de la Organización del Sector Pesquero y Acuícola.
@@ -24,6 +24,7 @@
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
     <plugin name="cordova-plugin-camera" spec="~4.0.3" />
     <plugin name="cordova-plugin-geolocation" spec="~4">
+	    <plugin name="cordova-plugin-inappbrowser" />
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="This app uses your location for maps." />
     </plugin>
     <platform name="android">
