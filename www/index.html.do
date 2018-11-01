@@ -85,13 +85,13 @@
 				</div>
 				<a class="menu-item" data-submenu="sub-3" href="#"><i class="font-13 fa color-night-light fa-info-circle"></i><strong>Herramientas</strong></a>
 				<div id="sub-3" class="submenu-item">
-					<a href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/es/-Corrientes-marinas-currents?currents,13.133,-88.594,5','_system'); return false;">Corrientes Marinas</a>
+					<a href="#" onclick="navigatepage('corrientes.html')">Corrientes Marinas</a>
 					<a href="#" onclick="navigatepage('clorofila.html')">Clorofila</a>
 					<a href="#" onclick="navigatepage('fases.html')">Fases de la Luna</a>
-					<a href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/es/-Olas-waves?waves,9.862,-83.916,5','_system'); return false;">Oleaje</a>
-					<a href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/es/-Show-add-more-layers/overlays?pressure,9.862,-83.916,5,m:dTGadMZ','_system'); return false;">Presión Atmosférica</a>
-					<a href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/?9.862,-83.916,5','_system'); return false;">Vientos</a>
-					<a href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/es/-Temperatura-temp?temp,9.862,-83.916,5','_system'); return false;">Temperatura superficial del mar</a>
+					<a href="#" onclick="navigatepage('oleaje.html')">Oleaje</a>
+					<a href="#" onclick="navigatepage('presion.html')">Presión Atmosférica</a>
+					<a href="#" onclick="navigatepage('vientos.html')">Vientos</a>
+					<a href="#" onclick="navigatepage('tsm.html')">Temperatura superficial del mar</a>
 					<a href="#" onclick="navigatepage('ciclones.html')">Vigilancia de ciclones tropicales</a>
 					<a href="#" onclick="navigatepage('tracking.html')">Navegación</a>
 				</div>
@@ -131,44 +131,11 @@
 				<!--Seccion del menu--> 
 		<ul class="container">
 				<!--Temperatura--> 
-				<li class="licontainer"> <img class="menu_img" src="img/tsm.jpg" alt="Temperatura Superficial Del Mar">
-				<div class="centered"><a class="menu_link" href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/es/-Temperatura-temp?temp,9.862,-83.916,5','_system'); return false;"><h1>Temperatura Superficial Del Mar</h1></a></div>
-				<a class="menu_link" href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/es/-Temperatura-temp?temp,9.862,-83.916,5','_system'); return false;"><p>Ver mapa</p></a>
+				<li class="licontainer"> <img class="menu_img" src="img/static/tsm2.jpg" alt="Temperatura Superficial Del Mar">
+				<div class="centered"><a class="menu_link" href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/?12.151,-86.268,5','_system'); return false;"><h1>Herramientas</h1></a></div>
+				<a class="menu_link" href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/?12.151,-86.268,5','_system'); return false;"><p>Ver mapa</p></a>
 				</li>
-				<!--Clorofila--> 
-			<li class="licontainer"> <img class="menu_img" src="img/ndc.jpg" alt="Clorofila">
-				<div class="centered"><a class="menu_link" href="#" onclick="navigatepage('clorofila.html')"><h1>Nivel de Clorofila</h1></a></div>
-				<a class="menu_link" href="#" onclick="navigatepage('clorofila.html')"><p>Ver mapa</p></a>
-				</li>
-				<!--Ciclones--> 
-			<!--<li class="licontainer"> <img class="menu_img" src="img/mpc.jpg" alt="Vigilancia de Ciclones">
-				<div class="centered"><a class="menu_link" href="#" onclick= "cordova.InAppBrowser.open('http://climapesca.org/probabilidad-de-formacion-de-ciclones-a-2-dias/','_system'); return false;"><h1>Vigilancia de Ciclones</h1></a></div>
-				<a class="menu_link" href="#" onclick= "cordova.InAppBrowser.open('http://climapesca.org/probabilidad-de-formacion-de-ciclones-a-2-dias/','_system'); return false;"><p>Ver mapa</p></a>
-				</li>-->
-				<li class="licontainer"> <img class="menu_img" src="img/mpc.jpg" alt="Clorofila">
-				<div class="centered"><a class="menu_link" href="#" onclick="navigatepage('ciclones.html')"><h1>Vigilancia de ciclones</h1></a></div>
-				<a class="menu_link" href="#" onclick="navigatepage('ciclones.html')"><p>Ver mapa</p></a>
-				</li>
-				<!--Vientos--> 
-			<li class="licontainer"> <img class="menu_img" src="img/vie.jpg" alt="Mapa de Vientos">
-				<div class="centered"><a class="menu_link" href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/?9.862,-83.916,5','_system'); return false;"><h1>Mapa de Vientos</h1></a></div>
-				<a class="menu_link" href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/?9.862,-83.916,5','_system'); return false;"><p>Ver mapa</p></a>
-				</li>
-				<!--Oleajes--> 
-			<li class="licontainer"> <img class="menu_img" src="img/ole.jpg" alt="Oleajes">
-				<div class="centered"><a class="menu_link" href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/es/-Olas-waves?waves,9.862,-83.916,5','_system'); return false;"><h1>Oleajes</h1></a></div>
-				<a class="menu_link" href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/es/-Olas-waves?waves,9.862,-83.916,5','_system'); return false;"><p>Ver mapa</p></a>
-				</li>
-				<!--Corrientes--> 
-			<li class="licontainer"> <img class="menu_img" src="img/crm.jpg" alt="Corrientes Marinas">
-				<div class="centered"><a class="menu_link" href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/es/-Corrientes-marinas-currents?currents,13.133,-88.594,5','_system'); return false;"><h1>Corrientes Marinas</h1></a></div>
-				<a class="menu_link" href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/es/-Corrientes-marinas-currents?currents,13.133,-88.594,5','_system'); return false;"><p>Ver mapa</p></a>
-				</li> 
-				<!---->
-			<li class="licontainer"> <img class="menu_img" src="img/fdl.jpg" alt="Corrientes Marinas">
-				<div class="centered"><a class="menu_link" href="#" onclick="navigatepage('fases.html')"><h1>Fases de la Luna</h1></a></div>
-				<a class="menu_link" href="#" onclick="navigatepage('fases.html')"><p>Ver Calendario</p></a>
-				</li>  
+				<!--Clorofila-->  
 			</ul>
 			<!--Fin seccion Menu
 			</div>
