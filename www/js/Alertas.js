@@ -10,10 +10,25 @@ $(document).ready(function()
        	var link=field.url;
        	var mid=field.id;
        	var strDate = new Date(mToday);
-       	var mDays = (mDateAlert - strDate)/ (1000 * 60 * 60 * 24);;
-       	console.log(mDateAlert);
-       	console.log(strDate);
-       	console.log(mDays<= 5);
+        var dd = strDate.getDate();
+        var mm = strDate.getMonth()+1; //January is 0!
+        var yyyy = strDate.getFullYear();
+          if(dd<10){
+            dd='0'+dd;
+          } 
+          if(mm<10){
+            mm='0'+mm;
+          }
+
+       var today = yyyy+''+mm+''+dd;
+       var mAlertNumber =mDateAlert.substring(0,10);
+       mDateInit=mAlertNumber.replace('-','');
+       mDateIni=mDateInit.replace('-','');
+       mDateEnd = today;
+       	var mDays = (mDateEnd-mDateIni)/ (1000 * 60 * 60 * 24);
+        console.log(mDays);
+        console.log(mDateIni);
+        console.log(mDateEnd);
        	if(mDays<= 5){
        		var x = document.getElementById("toast")
     		x.className = "show";
