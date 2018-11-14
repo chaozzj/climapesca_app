@@ -20,19 +20,38 @@ $(document).ready(function()
             mm='0'+mm;
           }
 
-       var today = yyyy+''+mm+''+dd;
-       var mAlertNumber =mDateAlert.substring(0,10);
-       mDateInit=mAlertNumber.replace('-','');
-       mDateIni=mDateInit.replace('-','');
-       mDateEnd = today;
-       	var mDays = (mDateEnd-mDateIni)/ (1000 * 60 * 60 * 24);
-        console.log(mDays);
-        console.log(mDateIni);
+      var today = yyyy+'-'+mm+'-'+dd;
+      var mAlertNumber =mDateAlert.substring(0,10);
+      //mDateInit=//mAlertNumber.replace('-','');
+      mDateIni= mToday;//mDateInit.replace('-','');
+      mDateEnd = mAlertNumber;
+      
+      var startDay = new Date(mDateIni);
+      var endDay = new Date(mDateEnd);
+      var millisecondsPerDay = 1000 * 60 * 60 * 24;
+
+      var millisBetween = startDay.getTime() - endDay.getTime();
+      var days = millisBetween / millisecondsPerDay;
+
+                  // Round down.
+                  //alert( Math.floor(days));
+
+       	var mDays =  Math.floor(days);//(mDateEnd-mDateIni)/ (1000 * 60 * 60 * 24);
+        //var rounded = Math.round(mDays);
+        
         console.log(mDateEnd);
+        console.log(mDateIni);
+        console.log(mDays);
        	if(mDays<= 5){
-       		var x = document.getElementById("toast")
-    		x.className = "show";
-    		setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
+       		var x = document.getElementById("toast");
+    		  x.className = "show";
+          
+          var circle = document.getElementById("alertcircle");
+          circle.className="pulse";
+          var imgal = document.getElementById("imgalert");
+          imgal.className="alertcircle";
+          $('#imgalert').css('visibility', 'visible');
+    		  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
        	}
     });
    }).fail(function(jqXHR) {
