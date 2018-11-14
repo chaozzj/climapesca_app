@@ -42,7 +42,7 @@ $(document).ready(function()
         console.log(mDateEnd);
         console.log(mDateIni);
         console.log(mDays);
-       	if(mDays<= 5){
+       	if(mDays<= 1){
        		var x = document.getElementById("toast");
     		  x.className = "show";
           
