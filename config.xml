@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
+<<<<<<< HEAD
 <widget id="org.climapesca.app" version="4.3.6" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+=======
+<widget id="org.climapesca.app" version="4.3.5" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+>>>>>>> 0758264334aba916b3b7d43348bbb2ab850d0182
     <name>Clima Pesca Digital</name>
     <description>
         Iniciativa de la Organización del Sector Pesquero y Acuícola.
