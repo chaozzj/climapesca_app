@@ -46,10 +46,16 @@ $(document).ready(function()
         
         var circle = document.getElementById("alertcircle");
         circle.className="pulse";
+        
         var imgal = document.getElementById("imgalert");
         imgal.className="alertcircle";
         $('#imgalert').css('visibility', 'visible');
-    	  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
+        
+        var texal= document.getElementById('textalert');
+        texal.className="texalertvisile";
+        $('#textalert').css('visibility','visible');
+    	  
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
       }
     });
    }).fail(function(jqXHR) {

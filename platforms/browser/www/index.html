@@ -49,6 +49,29 @@
 	#imgalert{
 		visibility: hidden;
 	}
+	#textalert{
+		visibility: hidden;
+		margin-left: 0px;
+		max-width: 100px;
+		z-index: 1000;
+		position: fixed;
+		top:5px;
+		left: 45%;
+		bottom: 0px;
+		color: #ffffff;
+	}
+	.textalertvisible{
+		visibility: visible !important;
+		border-radius: 50px;
+		margin-left: 0px;
+		max-width: 100px;
+		z-index: 1000;
+		position: fixed;
+		top:5px;
+		left: 40%;
+		bottom: 0px;
+		color: #ffffff;
+	}
 	.alertcircle{
 		visibility: visible !important;
 		border-radius: 50px;
@@ -57,7 +80,7 @@
 		z-index: 1000;
 		position: fixed;
 		top:0px;
-		left: 60%;
+		left: 30%;
 		bottom: 0px;
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 		  animation: pulse 2s infinite;
@@ -234,7 +257,7 @@
 				<a class="menu_link" href="#" onclick="navigatepage('fases.html')"><p>Ver Calendario</p></a>
 				</li>  
 			</ul>
-			<a href="#" onclick="cordova.InAppBrowser.open('http://climapesca.org/avisos/','_system'); return false;" id="alertcircle"><img src="img/Alert.png" id="imgalert"></a>
+			<a href="#" onclick="cordova.InAppBrowser.open('http://climapesca.org/avisos/','_system'); return false;" id="alertcircle"><img src="img/Alert.png" id="imgalert"></a><span id="textalert">Aviso de Alerta Activo</span>
 			<!--Fin seccion Menu
 			</div>
             
