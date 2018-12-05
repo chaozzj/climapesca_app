@@ -11,7 +11,7 @@
 <!--JqueryMobile-->
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.css" />
 <!--script src="http://code.jquery.com/jquery-1.5.0-alpha.1.min.js"></script-->
-	<script src="http://code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>
 <!--End JqueryMobile-->
 <style>
 	body {
@@ -202,135 +202,61 @@
 			<img id="opesca_logo" class="responsive-image" src="img/logos-header.jpg" />
 		</div>	
 		<div id="page-content-scroll"><!--Enables this element to be scrolled --> 			
-				
-			<div class="single-slider owl-carousel owl-has-dots-over bg-black">
-				<div>
-					<div class="cover-content cover-content-center">
-						<img src="img/logo_clima.png" style="max-width: 50%;margin: auto;" class="center-text">
-                        <!--<h1 class="center-text color-white small-bottom fa-2x">Meet Appeca</h1>-->
-						<p class="center-text color-white opacity-70 no-bottom">Iniciativa de la Organización del Sector Pesquero y Acuícola.</p>
-					</div>
-					<div class="cover-overlay overlay bg-black opacity-40"></div>
-					<img width="700" class="owl-lazy" src="img/empty.png" data-src="img/slides/background010.jpg" data-src="img/slides/background010.jpg">
-				</div>
-			</div>		
-			
-			<div class="homepage-cta no-top">
-				<h1 class="half-top center-text no-bottom font-21">HERRAMIENTAS</h1>
-                <br>
-				<!--Seccion del menu--> 
-		<ul class="container">
-				<!--Temperatura--> 
-				<li class="licontainer"> <img class="menu_img" src="img/tsm.jpg" alt="Temperatura Superficial Del Mar">
-				<div class="centered"><a class="menu_link" href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/es/-Temperatura-temp?temp,9.862,-83.916,5','_system'); return false;"><h1>Temperatura Superficial Del Mar</h1></a></div>
-				<a class="menu_link" href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/es/-Temperatura-temp?temp,9.862,-83.916,5','_system'); return false;"><p>Ver mapa</p></a>
-				</li>
-				<!--Clorofila--> 
-			<li class="licontainer"> <img class="menu_img" src="img/ndc.jpg" alt="Clorofila">
-				<div class="centered"><a class="menu_link" href="#" onclick="navigatepage('clorofila.html')"><h1>Nivel de Clorofila</h1></a></div>
-				<a class="menu_link" href="#" onclick="navigatepage('clorofila.html')"><p>Ver mapa</p></a>
-				</li>
-				<!--Ciclones--> 
-			<!--<li class="licontainer"> <img class="menu_img" src="img/mpc.jpg" alt="Vigilancia de Ciclones">
-				<div class="centered"><a class="menu_link" href="#" onclick= "cordova.InAppBrowser.open('http://climapesca.org/probabilidad-de-formacion-de-ciclones-a-2-dias/','_system'); return false;"><h1>Vigilancia de Ciclones</h1></a></div>
-				<a class="menu_link" href="#" onclick= "cordova.InAppBrowser.open('http://climapesca.org/probabilidad-de-formacion-de-ciclones-a-2-dias/','_system'); return false;"><p>Ver mapa</p></a>
-				</li>-->
-				<li class="licontainer"> <img class="menu_img" src="img/mpc.jpg" alt="Clorofila">
-				<div class="centered"><a class="menu_link" href="#" onclick="navigatepage('ciclones.html')"><h1>Vigilancia de ciclones</h1></a></div>
-				<a class="menu_link" href="#" onclick="navigatepage('ciclones.html')"><p>Ver mapa</p></a>
-				</li>
-				<!--Vientos--> 
-			<li class="licontainer"> <img class="menu_img" src="img/vie.jpg" alt="Mapa de Vientos">
-				<div class="centered"><a class="menu_link" href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/?9.862,-83.916,5','_system'); return false;"><h1>Mapa de Vientos</h1></a></div>
-				<a class="menu_link" href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/?9.862,-83.916,5','_system'); return false;"><p>Ver mapa</p></a>
-				</li>
-				<!--Oleajes--> 
-			<li class="licontainer"> <img class="menu_img" src="img/ole.jpg" alt="Oleajes">
-				<div class="centered"><a class="menu_link" href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/es/-Olas-waves?waves,9.862,-83.916,5','_system'); return false;"><h1>Oleajes</h1></a></div>
-				<a class="menu_link" href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/es/-Olas-waves?waves,9.862,-83.916,5','_system'); return false;"><p>Ver mapa</p></a>
-				</li>
-				<!--Corrientes--> 
-			<li class="licontainer"> <img class="menu_img" src="img/crm.jpg" alt="Corrientes Marinas">
-				<div class="centered"><a class="menu_link" href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/es/-Corrientes-marinas-currents?currents,13.133,-88.594,5','_system'); return false;"><h1>Corrientes Marinas</h1></a></div>
-				<a class="menu_link" href="#" onclick="cordova.InAppBrowser.open('https://www.windy.com/es/-Corrientes-marinas-currents?currents,13.133,-88.594,5','_system'); return false;"><p>Ver mapa</p></a>
-				</li> 
-				<!---->
-			<li class="licontainer"> <img class="menu_img" src="img/fdl.jpg" alt="Corrientes Marinas">
-				<div class="centered"><a class="menu_link" href="#" onclick="navigatepage('fases.html')"><h1>Fases de la Luna</h1></a></div>
-				<a class="menu_link" href="#" onclick="navigatepage('fases.html')"><p>Ver Calendario</p></a>
-				</li>  
-			</ul>
-			<a href="#" onclick="cordova.InAppBrowser.open('http://climapesca.org/avisos/','_system'); return false;" id="alertcircle"><img src="img/Alert.png" id="imgalert"></a><span id="textalert">Aviso de Alerta Activo</span>
-			<!--Fin seccion Menu
-			</div>
-            
-
-			<div class="decoration decoration-margins"></div>	
-			<div class="content">
-				<h1 class="half-top center-text no-bottom font-21">Componentes de Clima Pesca</h1>
-                <br>
-				<div class="icon-column">
-					<a href="meteorolgia.html">
-					<i class="fa fa-cloud color-blue-dark"></i>
-					<h1 class="uppercase ultrabold">Información meteorológica y oceanográfica</h1>
-					</a>
-					<p>
-				</div>
-				<div class="icon-column">
-					<a href="tsm.html">
-					<i class="fa fa-thermometer-three-quarters color-blue-dark"></i>
-					<h1 class="uppercase ultrabold">Temperatura superficial del mar</h1>
-					</a>
-					<p>
-					</p>
-				</div>				
-				<div class="icon-column">
-					<a href="clorofila.html">
-					<i class="fa fa-stumbleupon color-blue-dark"></i>
-					<h1 class="uppercase ultrabold">Clorofila</h1>
-					</a>
-					<p>
-					</p>
-				</div>
-				<div class="icon-column">
-					<a href="corrientes.html">
-					<i class="fa fa-lastfm color-blue-dark"></i>
-					<h1 class="uppercase ultrabold">Corrientes marinas Presión atmosférica</h1>
-					</a>
-					<p>
-					</p>
-				</div>
-				<div class="icon-column">
-					<a href="#">
-					<i class="fa fa-ship color-blue-dark"></i>
-					<h1 class="uppercase ultrabold">Impacto sobre la pesca y acuiculturas</h1>
-					</a>
-					<p>
-					</p>
-				</div>
-				<div class="icon-column">
-					<a href="#">
-					<i class="fa fa-line-chart color-blue-dark"></i>
-					<h1 class="uppercase ultrabold">Análisis semanal</h1>
-					</a>
-					<p>
-					</p>
-				</div>
-			</div>
-			<div class="decoration decoration-margins"></div>
-			<div>
-				<!--<button class="button button-blue-3d button-blue" onclick="login();">Ver Noticias</button>
 				<div class="content">
-				<h1 class="half-top center-text no-bottom font-21">Noticias Recientes</h1>
-				<div class="news-list-item" >
+				<div class="container heading-style">
+					<h4 class="heading-title">Suscribete</h4>
+					<i class="fa fa-envelope heading-icon font-17"></i>
+					<div class="line bg-black"></div>
+					<p class="heading-subtitle">
+						Información semanal Clima Pesca
+					</p>
+				</div>
+				<div class="container no-bottom">
+					<div class="contact-form no-bottom">
+						<div class="formSuccessMessageWrap" id="formSuccessMessageWrap" style="display: none;">
+							<div class="notification-large notification-has-icon notification-green">
+								<div class="notification-icon"><i class="fa fa-check notification-icon"></i></div>
+								<h1 class="uppercase ultrabold">Message sent</h1>
+								<p>We'll get back to you in the shorts possible time.</p>
+								<a href="#" class="close-notification"><i class="fa fa-times"></i></a>
+							</div>				
+						</div>
+						<form action="https://centroclima.us14.list-manage.com/subscribe/post" method="post" class="contactForm" id="contactForm">
+							<input type="hidden" name="u" value="0afbab33b66b5dc6ea29ff768">
+    						<input type="hidden" name="id" value="7b96ee4718">
+    						<input type="hidden" name="ht" value="12356a4f69b77324204f09a6793e44629c92847e:MTU0NDAzNzM1OS45NzA0">
+    						<input type="hidden" name="mc_signupsource" value="hosted">
 
-					<ul data-role="listview" id="posts"  data-filter="true" data-filter-placeholder="Search fruits..." data-inset="true">
-<!--<script>login();</script>
-					</ul>
+							<fieldset>
+								<div class="formFieldWrap">
+									<label class="field-title contactNameField" for="MERGE1">Nombre:<span>(required)</span>
+									</label>
+									<input type="text" name="MERGE1" value="" class="contactField requiredField" id="MERGE1">
+								</div>
+								<div class="formFieldWrap">
+									<label class="field-title contactNameField" for="MERGE2">Apellido:<span>(required)</span>
+									</label>
+									<input type="text" name="MERGE2" value="" class="contactField requiredField" id="MERGE2">
+								</div>
+								<div class="formFieldWrap">
+									<label class="field-title contactEmailField" for="MERGE0">Email: <span>(required)</span>
+									</label>
+									<input type="text" name="MERGE0" value="" class="contactField requiredField requiredEmailField" id="MERGE0">
+								</div>
+								<div class="formFieldWrap">
+									<label class="field-title contactNameField" for="MERGE5">Status:<span>(required)</span>
+									</label>
+									<input type="text" name="MERGE5" value="" class="contactField requiredField" id="MERGE5">
+								</div>
+								<div class=" contactFormButton">
+									<input type="submit" class="buttonWrap button button-blue button-sm button-rounded uppercase ultrabold contactSubmitButton" value="Suscribirse">
+								</div>
+							</fieldset>
+						</form>			
+					</div>
 				</div>
-				
-				</div>
-			</div>-->
+				<div class="decoration"></div>
+			</div>
 
 <!--End Content-->
 <!--Footer-->
