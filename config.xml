@@ -128,7 +128,7 @@
 	<feature name="Whatsapp">
         <param name="android-package" value="mobi.moica.whatsapp.Whatsapp" />
     </feature>
-    <engine name="ios" spec="^4.2.5" />
+    <engine name="ios" spec="^4.5.1" />
 	<platform name="android">
   <resource-file src="google-services.json" target="google-services.json" />
 </platform>
