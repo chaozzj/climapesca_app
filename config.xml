@@ -9,7 +9,7 @@
     </author>
 	<icon src="icon.png" />
     <content src="index.html" />
-    <preference name="phonegap-version" value="cli-7.1.0" />
+
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="android-targetSdkVersion" value="26" />
@@ -128,7 +128,7 @@
 	<feature name="Whatsapp">
         <param name="android-package" value="mobi.moica.whatsapp.Whatsapp" />
     </feature>
-    <engine name="ios" spec="^4.5.4" />
+    <engine name="ios" spec="^4.2.5" />
 	<platform name="android">
   <resource-file src="google-services.json" target="google-services.json" />
 </platform>
